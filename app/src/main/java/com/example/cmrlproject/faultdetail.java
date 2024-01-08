@@ -36,6 +36,7 @@ public class faultdetail extends AppCompatActivity {
     ImageButton b1, b2, b3;
     Button acc;
     TextView t1, t2, t3, t4, t5, t6;
+    String token;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class faultdetail extends AppCompatActivity {
         t6 = findViewById(R.id.acceptedstatus);
         acc = findViewById(R.id.acceptb);
         Intent intent = getIntent();
-        String token = intent.getStringExtra("token");
+        token = intent.getStringExtra("token");
         Log.d("token-from FD", token);
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,7 +167,11 @@ public class faultdetail extends AppCompatActivity {
                     } else if (jsonResponse.has("message") && "Unauthorized: Invalid token".equals(jsonResponse.getString("message"))) {
                         // If unauthorized message is present, alert the user to relogin and redirect to login page
                         showTokenExpiredAlert();
-                    } else {
+                    }
+                    else if (jsonResponse.has("message") && "Already assigned".equals(jsonResponse.getString("message"))) {
+                        // If unauthorized message is present, alert the user to relogin and redirect to login page
+                        showAssignmentUnSuccessAlert();
+                    }else {
                         // Handle other cases or response formats
                         Log.e("API Error", "Unexpected response format");
                     }
@@ -201,7 +206,23 @@ public class faultdetail extends AppCompatActivity {
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    // You can add any specific action or leave it empty
+                    Intent intent = new Intent(faultdetail.this,l1acceptedreq.class);
+                    intent.putExtra("token",token);
+                    startActivity(intent);
+                }
+            });
+            builder.show();
+        }
+        private void showAssignmentUnSuccessAlert() {
+            AlertDialog.Builder builder = new AlertDialog.Builder(faultdetail.this);
+            builder.setTitle("Fault Assigned");
+            builder.setMessage("The fault has been assigned Already");
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Intent intent = new Intent(faultdetail.this,l1home.class);
+                    intent.putExtra("token",token);
+                    startActivity(intent);
                 }
             });
             builder.show();
