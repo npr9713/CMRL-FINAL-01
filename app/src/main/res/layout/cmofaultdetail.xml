@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/background_gradient"
+    >
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Request Details:"
+        android:textSize="30dp"
+        android:layout_marginStart="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/faultnumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fault Ack Number: "
+        android:layout_marginTop="70dp"
+        android:textSize="20dp"
+        android:layout_marginStart="20dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/faultdateandtime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:layout_marginStart="20dp"
+        android:textSize="20dp"
+        android:text="Date and Time: "
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/faultstation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:textSize="20dp"
+        android:text="Station:"
+        android:layout_marginTop="170dp"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/faultdevice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Device: "
+        android:layout_marginStart="20dp"
+        android:textSize="20dp"
+        android:layout_marginTop="220dp"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/faultdeviceNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="270dp"
+        android:textSize="20dp"
+        android:layout_marginStart="20dp"
+        android:text="Device Number: "
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/faultstatus"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="320dp"
+        android:layout_marginStart="20dp"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:text="Fault Status: "
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/emp"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="360dp"
+        android:layout_marginStart="20dp"
+        android:textSize="15dp"
+        android:layout_height="wrap_content"
+        android:text="Assigned To: "
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/a_time"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="390dp"
+        android:layout_marginStart="20dp"
+        android:textSize="15dp"
+        android:layout_height="wrap_content"
+        android:text="Assignment Time: "
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/i_time"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="420dp"
+        android:layout_marginStart="20dp"
+        android:textSize="15dp"
+        android:layout_height="wrap_content"
+        android:text="In Progress Time: "
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/n_time"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="450dp"
+        android:layout_marginStart="20dp"
+        android:textSize="15dp"
+        android:layout_height="wrap_content"
+        android:text="Need Support Time: "
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/s_time"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="480dp"
+        android:layout_marginStart="20dp"
+        android:textSize="15dp"
+        android:layout_height="wrap_content"
+        android:text="Spare Request Time: "
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/c_time"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="510dp"
+        android:layout_marginStart="20dp"
+        android:textSize="15dp"
+        android:layout_height="wrap_content"
+        android:text="Closed Time: "
+        android:textStyle="bold"/>
+
+
+    <TextView
+        android:id="@+id/acceptedackno"
+        android:layout_width="188dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="73dp"
+        android:layout_marginTop="70dp"
+        android:layout_toRightOf="@+id/faultnumber"
+        android:text=""
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/accepteddateandtime"
+        android:layout_width="233dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="67dp"
+        android:layout_marginTop="120dp"
+        android:layout_toRightOf="@+id/faultdateandtime"
+        android:text=""
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/acceptedstation"
+        android:layout_width="304dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="170dp"
+        android:layout_toRightOf="@+id/faultstation"
+        android:text=""
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/accepteddevice"
+        android:layout_width="298dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="220dp"
+        android:layout_toRightOf="@+id/faultdevice"
+        android:text=""
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/accepteddeviceno"
+        android:layout_width="223dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="270dp"
+        android:layout_toRightOf="@+id/faultdeviceNumber"
+        android:text=""
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/acceptedstatus"
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="320dp"
+        android:layout_toRightOf="@+id/faultstatus"
+        android:text=""
+        android:textSize="20dp" />
+    <TextView
+        android:id="@+id/emp_value"
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="360dp"
+        android:layout_toRightOf="@+id/faultstatus"
+        android:text=""
+        android:textSize="15dp" />
+    <TextView
+        android:id="@+id/atime_value"
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="390dp"
+        android:layout_toRightOf="@+id/faultstatus"
+        android:text=""
+        android:textSize="15dp" />
+    <TextView
+        android:id="@+id/itime_value"
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="420dp"
+        android:layout_toRightOf="@+id/faultstatus"
+        android:text=""
+        android:textSize="15dp" />
+    <TextView
+        android:id="@+id/ntime_value"
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="450dp"
+        android:layout_toRightOf="@+id/faultstatus"
+        android:text=""
+        android:textSize="15dp" />
+    <TextView
+        android:id="@+id/stime_value"
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="480dp"
+        android:layout_toRightOf="@+id/faultstatus"
+        android:text=""
+        android:textSize="15dp" />
+    <TextView
+        android:id="@+id/ctime_value"
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="510dp"
+        android:layout_toRightOf="@+id/faultstatus"
+        android:text=""
+        android:textSize="15dp" />
+
+
+    <LinearLayout
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:background="@color/blue"
+        android:elevation="8dp">
+
+        <ImageButton
+            android:id="@+id/addempbut"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/addemployeelogo"
+            android:scaleType="fitCenter"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/homebut"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/homelogo1"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/viewreqbut"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/viewreqlogo"
+            tools:ignore="SpeakableTextPresentCheck" />
+        <ImageButton
+            android:id="@+id/dashboardbut"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/piechartlogo"
+            tools:ignore="SpeakableTextPresentCheck" />
+        <ImageButton
+            android:id="@+id/profilebut"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/profilelogo1"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/blue"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="550dp"
+        android:layout_toRightOf="@+id/employeeSpinner"
+        android:text="Assign"/>
+
+    <Spinner
+        android:id="@+id/employeeSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="550dp"
+        android:minHeight="48dp"
+        android:spinnerMode="dropdown" />
+
+</RelativeLayout>

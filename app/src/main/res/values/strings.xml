@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">cmrl project
+    </string>
+    <string-array name="station_codes1">
+        <item>All Station</item>
+        <item>SWD</item>
+        <item>SWN</item>
+        <item>STV</item>
+        <item>STT</item>
+
+        <!-- Add more station codes as needed -->
+    </string-array>
+    <string-array name="station_codes">
+        <item>SWD</item>
+        <item>SWN</item>
+        <item>STV</item>
+        <item>STT</item>
+
+        <!-- Add more station codes as needed -->
+    </string-array>
+    <string-array name="status_codes">
+        <item>All Status</item>
+        <item>Open</item>
+        <item>In Progress</item>
+        <item>Need Support</item>
+        <item>Spare Request</item>
+        <item>Closed</item>
+    </string-array>
+</resources>

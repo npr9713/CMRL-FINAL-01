@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.CmrlProject"
+        tools:targetApi="31">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".l1login"
+            android:exported="true">
+            <!-- Intent filters if any -->
+        </activity>
+        <activity
+            android:name=".l1signup"
+            android:exported="true">
+            <!-- Intent filters if any -->
+        </activity>
+        <activity
+            android:name=".l1home"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".faultdetail"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".l1profile"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".l1acceptedreq"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".acceptedreqdetail"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".cmologin"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".zjelogin"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".cmohome"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".zjesignup"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".cmoaddemp"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".zjehome"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".zjeprofile"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".cmoviewreq"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".cmoprofile"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".cmodashboard"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".zjedashboard"
+            android:exported="true">
+        </activity>
+
+
+        <activity
+            android:name=".cmofaultdetail"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".zjeviewreq"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".zjefaultdetail"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".zjeapprovereq"
+            android:exported="true">
+        </activity>
+    </application>
+
+</manifest>
