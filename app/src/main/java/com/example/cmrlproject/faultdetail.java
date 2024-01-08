@@ -164,6 +164,8 @@ public class faultdetail extends AppCompatActivity {
                     if (jsonResponse.has("success")) {
                         // If success array is present, the fault is assigned successfully
                         handleSuccessResponse(jsonResponse);
+
+
                     } else if (jsonResponse.has("message") && "Unauthorized: Invalid token".equals(jsonResponse.getString("message"))) {
                         // If unauthorized message is present, alert the user to relogin and redirect to login page
                         showTokenExpiredAlert();
@@ -192,14 +194,14 @@ public class faultdetail extends AppCompatActivity {
             String ackno = assignmentObject.getString("ackno");
             String eid = assignmentObject.getString("eid");
             String hoa = assignmentObject.getString("hoa");
-            String time = assignmentObject.getString("time");
+            String time = assignmentObject.getString("a_time");
             String status = assignmentObject.getString("status");
 
-            // Alert the user that the fault is assigned successfully
             showAssignmentSuccessAlert();
         }
 
         private void showAssignmentSuccessAlert() {
+            Log.d("status","assigned");
             AlertDialog.Builder builder = new AlertDialog.Builder(faultdetail.this);
             builder.setTitle("Fault Assigned");
             builder.setMessage("The fault has been assigned successfully.");
