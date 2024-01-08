@@ -50,6 +50,10 @@ public class zjeprofile extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SharedPreferences sharedPreferences = getSharedPreferences("mypref",MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("AccessToken-zje",null);
+                editor.apply();
                 Intent i = new Intent(zjeprofile.this, MainActivity.class);
                 i.putExtra("token", token);
                 startActivity(i);
