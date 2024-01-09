@@ -28,7 +28,7 @@
         android:layout_marginTop="40dp"/>
 
     <EditText
-        android:id="@+id/editTextTextPassword2"
+        android:id="@+id/Password2"
         android:layout_width="328dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -50,13 +50,13 @@
         android:autofillHints="password"
         android:inputType="textPassword"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/editTextTextPassword2"
+        android:layout_below="@+id/Password2"
         android:hint="Confirm New Password"
         android:textColorHint="@color/black"
         android:layout_marginTop="40dp"/>
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"

@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,6 +35,7 @@ public class l1acceptedreq extends AppCompatActivity {
 
     String token;
     ImageButton b1, b2, b3;
+    TextView t1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class l1acceptedreq extends AppCompatActivity {
         b1 = findViewById(R.id.homebut);
         b2 = findViewById(R.id.profilebut);
         b3 = findViewById(R.id.logsbut);
+        t1 = findViewById(R.id.notext);
         Intent i = getIntent();
         token = i.getStringExtra("token");
         Log.d("TOKEN-L1",token);
@@ -53,6 +56,7 @@ public class l1acceptedreq extends AppCompatActivity {
 
         ListView faultListView = findViewById(R.id.faultListView);
         faultListView.setAdapter(adapter);
+        t1.setVisibility(View.GONE);
 
         // Execute the AsyncTask to make the HTTP POST request
         new HttpRequestTask().execute("https://98bb-2401-4900-6323-51b1-741b-7ac2-15bb-9d07.ngrok-free.app/l1_request_page");
@@ -176,8 +180,12 @@ public class l1acceptedreq extends AppCompatActivity {
             try {
                 if (jsonResponse.has("success")) {
                     // Check if "success" is an array or a single object
+                    String success = jsonResponse.getString("success");
                     Object successObject = jsonResponse.get("success");
-
+                    if("No data".equals(success))
+                    {
+                        t1.setVisibility(View.VISIBLE);
+                    }
                     if (successObject instanceof JSONObject) {
                         // Single object
                         JSONObject singleObject = (JSONObject) successObject;

@@ -38,20 +38,17 @@ public class cmologin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cmologin);
         Intent i = getIntent();
-        t1 = (TextView) findViewById(R.id.alerttext);
         e1 = (EditText) findViewById(R.id.eidl);
-        e2 = (EditText) findViewById(R.id.phonenol);
         e3 = (EditText) findViewById(R.id.passwordl);
         b1 = (Button) findViewById(R.id.loginb);
         b2 = (Button) findViewById(R.id.resetpass);
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (e1.getText().toString().trim().length() == 0 || e2.getText().toString().trim().length() == 0 || e3.getText().toString().trim().length() == 0) {
+                if (e1.getText().toString().trim().length() == 0 || e3.getText().toString().trim().length() == 0) {
                     t1.setText("Enter all values to continue!!");
-                } else if (e2.getText().toString().trim().length() != 10) {
-                    t1.setText("Phone number must contain 10 digits!!");
-                } else {
+                }
+                else {
                     eid = e1.getText().toString();
                     password = e3.getText().toString();
                     new cmologin.HttpRequestTask().execute(eid, password);

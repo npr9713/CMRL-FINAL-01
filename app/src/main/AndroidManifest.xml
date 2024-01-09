@@ -101,7 +101,14 @@
             android:name=".zjedashboard"
             android:exported="true">
         </activity>
-
+        <activity
+            android:name=".resetpass"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".forgotpass"
+            android:exported="true">
+        </activity>
 
         <activity
             android:name=".cmofaultdetail"
@@ -123,10 +130,7 @@
             android:name=".storelogin"
             android:exported="true">
         </activity>
-        <activity
-            android:name=".forgotpass"
-            android:exported="true">
-        </activity>
+
     </application>
 
 </manifest>

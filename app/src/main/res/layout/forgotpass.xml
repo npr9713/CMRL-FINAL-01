@@ -22,7 +22,7 @@
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Don't worry it happens. Please enter the address associated with your account."
+        android:text="Please enter the address associated with your account."
         android:textSize="20sp"
         android:textColor="@color/black"
         android:layout_marginStart="20dp"
