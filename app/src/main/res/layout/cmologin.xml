@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_gradient">
+    android:background="@drawable/background_gradient"
+    >
 
     <TextView
         android:id="@+id/textcmo"
@@ -20,15 +21,26 @@
         tools:layout_editor_absoluteY="32dp" />
 
     <EditText
+        android:id="@+id/phonenol"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:hint="Phone no:"
+        android:textSize="25dp"
+        android:background="@drawable/et_custom"
+        android:layout_marginStart="45dp"
+        android:layout_marginVertical="200dp"
+        android:inputType="phone" />
+
+    <EditText
         android:id="@+id/passwordl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="225dp"
+        android:layout_marginVertical="275dp"
         android:layout_marginStart="45dp"
         android:background="@drawable/et_custom"
         android:ems="10"
         android:hint="Password:"
-        android:textColorHint="@color/black"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:textSize="25dp" />
@@ -47,7 +59,7 @@
         android:id="@+id/resetpass"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginVertical="325dp"
+        android:layout_marginVertical="350dp"
         android:layout_marginStart="10dp"
         android:layout_toRightOf="@+id/textView5"
         android:backgroundTint="@color/blue"
@@ -64,13 +76,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
         android:hint="Forgot Password:"
-        android:textColorHint="@color/black"
-        android:layout_marginVertical="325dp"
+        android:layout_marginVertical="350dp"
 
         android:textSize="25dp"/>
-
-
-
 
     <EditText
         android:id="@+id/eidl"
@@ -79,12 +87,20 @@
         android:ems="10"
         android:inputType="text"
         android:hint="Employee id:"
-        android:textColorHint="@color/black"
         android:layout_marginStart="45dp"
         android:layout_marginVertical="125dp"
         android:background="@drawable/et_custom"
         android:textSize="25dp"/>
 
-
+    <TextView
+        android:id="@+id/alerttext"
+        android:layout_width="337dp"
+        android:layout_height="142dp"
+        android:layout_marginVertical="500dp"
+        android:layout_marginStart="45dp"
+        android:text=""
+        android:textColor="@color/red"
+        android:textSize="15dp"
+        android:textStyle="bold" />
 
 </RelativeLayout>
