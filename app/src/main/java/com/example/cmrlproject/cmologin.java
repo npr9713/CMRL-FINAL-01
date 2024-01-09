@@ -32,13 +32,13 @@ public class cmologin extends AppCompatActivity {
     TextView t1;
     EditText e1, e2, e3;
     String eid,token,password;
-    //this is nandha
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cmologin);
         Intent i = getIntent();
-        t1 = (TextView) findViewById(R.id.alerttext);
+
         e1 = (EditText) findViewById(R.id.eidl);
         e2 = (EditText) findViewById(R.id.phonenol);
         e3 = (EditText) findViewById(R.id.passwordl);
