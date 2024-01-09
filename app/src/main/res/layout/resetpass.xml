@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/background_gradient">
+    <ImageButton
+        android:id="@+id/backbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/backlogo"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:contentDescription="back button" />
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset password?"
+        android:textSize="40sp"
+        android:layout_below="@+id/backbutton"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"/>
+
+    <EditText
+        android:id="@+id/editTextTextPassword2"
+        android:layout_width="328dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="New Password:"
+        android:autofillHints="password"
+        android:minHeight="48dp"
+        android:layout_centerHorizontal="true"
+        android:textColorHint="@color/black"
+        android:layout_below="@+id/textView16"
+        android:layout_marginTop="40dp"/>
+
+    <EditText
+        android:id="@+id/editTextTextPassword3"
+        android:layout_width="328dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:minHeight="48dp"
+        android:autofillHints="password"
+        android:inputType="textPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/editTextTextPassword2"
+        android:hint="Confirm New Password"
+        android:textColorHint="@color/black"
+        android:layout_marginTop="40dp"/>
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:backgroundTint="@color/blue"
+        android:layout_below="@+id/editTextTextPassword3"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>

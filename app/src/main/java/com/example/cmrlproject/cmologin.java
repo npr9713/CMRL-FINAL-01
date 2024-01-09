@@ -1,6 +1,6 @@
 package com.example.cmrlproject;
 
-import static android.opengl.Matrix.length;
+
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+
 
 import android.content.Intent;
 
@@ -29,33 +29,46 @@ import java.net.URL;
 
 public class cmologin extends AppCompatActivity {
     Button b1, b2;
-    TextView t1;
-    EditText e1, e2, e3;
+
+    EditText e1,  e3;
+    android.app.AlertDialog.Builder builder;
     String eid,token,password;
-    //this is nandha
+    String f="2";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cmologin);
-        Intent i = getIntent();
-        t1 = (TextView) findViewById(R.id.alerttext);
-        e1 = (EditText) findViewById(R.id.eidl);
-        e2 = (EditText) findViewById(R.id.phonenol);
-        e3 = (EditText) findViewById(R.id.passwordl);
-        b1 = (Button) findViewById(R.id.loginb);
-        b2 = (Button) findViewById(R.id.resetpass);
+
+
+        e1 = findViewById(R.id.eidl);
+
+        e3 =  findViewById(R.id.passwordl);
+        b1 =  findViewById(R.id.loginb);
+        b2 =  findViewById(R.id.resetpass);
+        builder= new android.app.AlertDialog.Builder(this);
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (e1.getText().toString().trim().length() == 0 || e2.getText().toString().trim().length() == 0 || e3.getText().toString().trim().length() == 0) {
-                    t1.setText("Enter all values to continue!!");
-                } else if (e2.getText().toString().trim().length() != 10) {
-                    t1.setText("Phone number must contain 10 digits!!");
-                } else {
+                if (e1.getText().toString().trim().length() == 0 ||  e3.getText().toString().trim().length() == 0) {
+                    builder.setTitle("Error!!")
+                            .setMessage("Enter all the value to continue!")
+                            .setCancelable(true)
+                            .show();
+                }  else {
                     eid = e1.getText().toString();
                     password = e3.getText().toString();
                     new cmologin.HttpRequestTask().execute(eid, password);
                 }
+            }
+        });
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(cmologin.this, forgotpass.class);
+                i.putExtra("flag",f);
+                startActivity(i);
+
             }
         });
     }
@@ -115,20 +128,25 @@ public class cmologin extends AppCompatActivity {
                     JSONObject jsonResponse = new JSONObject(result);
                     String message = jsonResponse.optString("message");
 
-                    if ("Login successful".equals(message)) {
-                        token = jsonResponse.optString("token");
-                        showSuccessAlert(token);
-                        Load(token);
-                    } else if ("Invalid password".equals(message)) {
-                        // Handle invalid password case (show an error message, etc.)
-                        showInvalidPasswordAlert();
-                    } else if ("EID not found".equals(message)) {
-                        // Handle EID not found case (show an error message, etc.)
-                        showEIDNotFoundAlert();
-                    } else {
-                        // Handle other conditions or show appropriate message
-                        Log.e("API Error", "Unexpected response: " + message);
-                        // You may want to handle other conditions here
+                    switch (message) {
+                        case "Login successful":
+                            token = jsonResponse.optString("token");
+                            showSuccessAlert(token);
+                            Load(token);
+                            break;
+                        case "Invalid password":
+                            // Handle invalid password case (show an error message, etc.)
+                            showInvalidPasswordAlert();
+                            break;
+                        case "EID not found":
+                            // Handle EID not found case (show an error message, etc.)
+                            showEIDNotFoundAlert();
+                            break;
+                        default:
+                            // Handle other conditions or show appropriate message
+                            Log.e("API Error", "Unexpected response: " + message);
+                            // You may want to handle other conditions here
+                            break;
                     }
                 } catch (JSONException e) {
                     Log.e("API Error", "Error parsing JSON response", e);

@@ -12,15 +12,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
+
+import java.util.Objects;
+
 
 public class MainActivity extends AppCompatActivity {
     private Button getStartedButton;
     private int userType = 0;
     private RadioGroup radioGroup;
-    private RadioButton cmoRadioButton;
-    private RadioButton l1RadioButton;
-    private RadioButton zjeRadioButton;
+
     String token,ctoken,ztoken;
 
 
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d("ctoken",ctoken);
             Log.d("token",token);
 
-        if(!(token=="no"))
+        if(!(Objects.equals(token, "no")))
         {
             Log.d("token",token);
             Intent i = new Intent(MainActivity.this,l1profile.class);
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(i);
 
         }
-        if(!(ctoken=="no"))
+        if(!(Objects.equals(ctoken, "no")))
         {
             Log.d("token",ctoken);
             Intent i = new Intent(MainActivity.this,cmoprofile.class);
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(i);
 
         }
-        if(!(ztoken=="no"))
+        if(!(Objects.equals(ztoken, "no")))
         {
             Log.d("token",ctoken);
             Intent i = new Intent(MainActivity.this,zjeprofile.class);
@@ -64,9 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         getStartedButton = findViewById(R.id.button3);
         radioGroup = findViewById(R.id.radioGroup);
-        cmoRadioButton = findViewById(R.id.checkbox01);
-        l1RadioButton = findViewById(R.id.checkbox03);
-        zjeRadioButton = findViewById(R.id.checkbox02);
+
 
 
 
@@ -81,6 +79,10 @@ public class MainActivity extends AppCompatActivity {
                     userType = 1;
                 } else if (checkedId == R.id.checkbox03) {
                     userType = 2;
+                }
+                else if (checkedId==R.id.checkbox04) {
+                    userType=3;
+
                 }
             }
         });
@@ -101,6 +103,10 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case 2:
                             intent = new Intent(MainActivity.this, l1login.class);
+                            startActivity(intent);
+                            break;
+                        case 3:
+                            intent = new Intent(MainActivity.this, storelogin.class);
                             startActivity(intent);
                             break;
                     }

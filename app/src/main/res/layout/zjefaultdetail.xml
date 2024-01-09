@@ -23,6 +23,7 @@
         android:text="Fault Ack Number: "
         android:layout_marginTop="70dp"
         android:textSize="20dp"
+        android:textColor="@color/black"
         android:layout_marginStart="20dp"
         android:textStyle="bold"/>
 
@@ -33,6 +34,7 @@
         android:layout_marginTop="120dp"
         android:layout_marginStart="20dp"
         android:textSize="20dp"
+        android:textColor="@color/black"
         android:text="Date and Time: "
         android:textStyle="bold"/>
     <TextView
@@ -42,6 +44,7 @@
         android:layout_marginStart="20dp"
         android:textSize="20dp"
         android:text="Station:"
+        android:textColor="@color/black"
         android:layout_marginTop="170dp"
         android:textStyle="bold"/>
     <TextView
@@ -51,6 +54,7 @@
         android:text="Device: "
         android:layout_marginStart="20dp"
         android:textSize="20dp"
+        android:textColor="@color/black"
         android:layout_marginTop="220dp"
         android:textStyle="bold"/>
     <TextView
@@ -61,6 +65,7 @@
         android:textSize="20dp"
         android:layout_marginStart="20dp"
         android:text="Device Number: "
+        android:textColor="@color/black"
         android:textStyle="bold"/>
     <TextView
         android:id="@+id/faultstatus"
@@ -70,6 +75,7 @@
         android:textSize="20dp"
         android:layout_height="wrap_content"
         android:text="Fault Status: "
+        android:textColor="@color/black"
         android:textStyle="bold"/>
     <TextView
         android:id="@+id/emp"
@@ -79,6 +85,7 @@
         android:textSize="15dp"
         android:layout_height="wrap_content"
         android:text="Assigned To: "
+        android:textColor="@color/black"
         android:textStyle="bold"/>
     <TextView
         android:id="@+id/a_time"
@@ -88,6 +95,7 @@
         android:textSize="15dp"
         android:layout_height="wrap_content"
         android:text="Assignment Time: "
+        android:textColor="@color/black"
         android:textStyle="bold"/>
     <TextView
         android:id="@+id/i_time"
@@ -97,6 +105,7 @@
         android:textSize="15dp"
         android:layout_height="wrap_content"
         android:text="In Progress Time: "
+        android:textColor="@color/black"
         android:textStyle="bold"/>
     <TextView
         android:id="@+id/n_time"
@@ -106,6 +115,7 @@
         android:textSize="15dp"
         android:layout_height="wrap_content"
         android:text="Need Support Time: "
+        android:textColor="@color/black"
         android:textStyle="bold"/>
     <TextView
         android:id="@+id/s_time"
@@ -115,6 +125,7 @@
         android:textSize="15dp"
         android:layout_height="wrap_content"
         android:text="Spare Request Time: "
+        android:textColor="@color/black"
         android:textStyle="bold"/>
     <TextView
         android:id="@+id/c_time"
@@ -124,6 +135,7 @@
         android:textSize="15dp"
         android:layout_height="wrap_content"
         android:text="Closed Time: "
+        android:textColor="@color/black"
         android:textStyle="bold"/>
 
 

@@ -119,6 +119,14 @@
             android:name=".zjeapprovereq"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".storelogin"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".forgotpass"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>

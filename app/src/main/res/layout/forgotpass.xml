@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient">
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot password?"
+        android:textSize="40sp"
+        android:layout_below="@+id/backbutton"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't worry it happens. Please enter the address associated with your account."
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_marginStart="20dp"
+        android:layout_below="@+id/textView16"
+        android:layout_marginTop="15dp"/>
+
+    <ImageButton
+        android:id="@+id/backbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/backlogo"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:contentDescription="back button" />
+    <EditText
+        android:id="@+id/mailid"
+        android:layout_width="328dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_below="@+id/textView19"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="Email ID:"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:textColorHint="@color/black"
+        android:autofillHints="emailAddress" />
+
+    <Button
+        android:id="@+id/otpbut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get OTP"
+        android:backgroundTint="@color/blue"
+        android:layout_below="@id/mailid"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"/>
+    <EditText
+        android:id="@+id/resetotp"
+        android:layout_width="328dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_below="@+id/textView20"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="OTP:"
+        android:digits="0123456789"
+        android:inputType="number"
+        android:maxLength="4"
+        android:minHeight="48dp"
+        android:textColorHint="@color/black"
+        android:autofillHints="password" />
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="An 4 digit code has been sent to the
+        E-mail."
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_marginStart="20dp"
+        android:layout_below="@+id/otpbut"
+        android:layout_marginTop="25dp"/>
+
+    <Button
+        android:id="@+id/submitbut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_below="@+id/resetotp"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/blue"/>
+
+</RelativeLayout>

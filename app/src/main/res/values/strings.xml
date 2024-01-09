@@ -26,4 +26,8 @@
         <item>Spare Request</item>
         <item>Closed</item>
     </string-array>
+    <string-array name="store_user_codes">
+        <item>Junior Engineer</item>
+        <item>Level 1</item>
+    </string-array>
 </resources>

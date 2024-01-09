@@ -3,26 +3,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:background="@drawable/background_gradient"
-    >
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="19dp"
+        android:background="@color/blue"
+        android:gravity="center"
+        android:text="CMRL Zone JE's Signup"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="63dp"
-        android:layout_marginTop="59dp"
         android:layout_marginEnd="59dp"
         android:layout_marginBottom="51dp"
         android:gravity="center"
+        android:textColor="@color/black"
         android:text="Join us to get started"
         android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/editTextText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextText"
@@ -36,6 +51,7 @@
         android:background="@drawable/et_custom"
         android:ems="10"
         android:hint="Name:"
+        android:textColorHint="@color/black"
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/editTextText2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,6 +67,7 @@
         android:background="@drawable/et_custom"
         android:ems="10"
         android:hint="Employee ID:"
+        android:textColorHint="@color/black"
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,6 +83,7 @@
         android:background="@drawable/et_custom"
         android:ems="10"
         android:hint="Password:"
+        android:textColorHint="@color/black"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/editTextPhone"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,6 +99,7 @@
         android:background="@drawable/et_custom"
         android:ems="10"
         android:hint="Phone no:"
+        android:textColorHint="@color/black"
         android:inputType="phone"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -92,13 +111,15 @@
         android:layout_height="50dp"
         android:layout_marginStart="69dp"
         android:layout_marginEnd="42dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="27dp"
         android:background="@drawable/et_custom"
         android:ems="10"
         android:hint="OTP:"
         android:inputType="numberPassword"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -107,11 +128,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="157dp"
         android:layout_marginEnd="157dp"
-        android:layout_marginBottom="50dp"
-        android:text="SIGN IN"
+        android:layout_marginBottom="92dp"
         android:backgroundTint="@color/blue"
+        android:text="SIGN IN"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -128,16 +150,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="403dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="22dp"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
