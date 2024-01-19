@@ -34,10 +34,11 @@ import java.util.List;
 
 public class cmofaultdetail extends AppCompatActivity{
     ImageButton b1,b2,b3,b4,b5;
-    Button assign;
+    Button assign,close;
     private JSONArray successArray;
+
     private String ackno;
-    private String a_time;
+    private String a_time,pending_time,spare_assigned_time,handover_time;
     private String i_time;
     private String n_time;
     private String s_time;
@@ -46,7 +47,7 @@ public class cmofaultdetail extends AppCompatActivity{
     private String status;
     private String emp;
     TextView t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11,t12;
-    TextView t13,t14,t15,t16,t17,t18;
+    TextView t13,t14,t15,t16,t17,t18,t19,t20,t21,t22,t23,t24;
     private String Selected_emp_name;
     String token;
     private String Selected_emp_id;
@@ -101,7 +102,15 @@ public class cmofaultdetail extends AppCompatActivity{
         t16 = (TextView)findViewById(R.id.n_time);
         t17 = (TextView)findViewById(R.id.s_time);
         t18 = (TextView)findViewById(R.id.c_time);
+        t19 = (TextView)findViewById(R.id.pending_time);
+        t20 = (TextView)findViewById(R.id.pending_value);
+        t21 = findViewById(R.id.spare_assigned_time);
+        t22 = findViewById(R.id.assigned_spare_value);
+        t23 = findViewById(R.id.handover_time);
+        t24 = findViewById(R.id.handover_value);
         assign=(Button)findViewById(R.id.submit);
+        assign=(Button)findViewById(R.id.submit);
+        close = (Button) findViewById(R.id.closeb);
         Spinner employeeSpinner = (Spinner) findViewById(R.id.employeeSpinner);
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, employees);
@@ -204,12 +213,27 @@ public class cmofaultdetail extends AppCompatActivity{
                 t16.setVisibility(View.GONE);
                 t17.setVisibility(View.GONE);
                 t18.setVisibility(View.GONE);
+                t19.setVisibility(View.GONE);
+                t20.setVisibility(View.GONE);
+                t21.setVisibility(View.GONE);
+                t22.setVisibility(View.GONE);
+                t23.setVisibility(View.GONE);
+                t24.setVisibility(View.GONE);
+
             }
-            if(status.equalsIgnoreCase("Closed")||status.equalsIgnoreCase("In Progress")||status.equalsIgnoreCase("Spare Request")||
-            status.equalsIgnoreCase("Need Support")||status.equalsIgnoreCase("Assigned"))
+            if(status.equalsIgnoreCase("Need Support")||status.equalsIgnoreCase("Spare Request"))
             {
                 employeeSpinner.setVisibility(View.GONE);
                 assign.setVisibility(View.GONE);
+
+
+            }
+            if(status.equalsIgnoreCase("Closed")||status.equalsIgnoreCase("In Progress"))
+            {
+                employeeSpinner.setVisibility(View.GONE);
+                assign.setVisibility(View.GONE);
+                close.setVisibility(View.GONE);
+
             }
             if(status.equalsIgnoreCase("Assigned"))
             {
@@ -222,6 +246,29 @@ public class cmofaultdetail extends AppCompatActivity{
                 t16.setVisibility(View.GONE);
                 t17.setVisibility(View.GONE);
                 t18.setVisibility(View.GONE);
+                t19.setVisibility(View.GONE);
+                t20.setVisibility(View.GONE);
+                t21.setVisibility(View.GONE);
+                t22.setVisibility(View.GONE);
+                t23.setVisibility(View.GONE);
+                t24.setVisibility(View.GONE);
+                employeeSpinner.setVisibility(View.GONE);
+                assign.setVisibility(View.GONE);
+
+            }
+            if(status.equalsIgnoreCase("pending_sr"))
+            {
+
+                employeeSpinner.setVisibility(View.GONE);
+                assign.setVisibility(View.GONE);
+
+            }
+            if(status.equalsIgnoreCase("spare_assigned"))
+            {
+
+                employeeSpinner.setVisibility(View.GONE);
+                assign.setVisibility(View.GONE);
+
             }
         }
         assign.setOnClickListener(new View.OnClickListener() {
@@ -312,6 +359,9 @@ public class cmofaultdetail extends AppCompatActivity{
                 c_time = successObject.optString("c_time_ist", "");
                 n_time = successObject.optString("n_time_ist", "");
                 s_time = successObject.optString("s_time_ist", "");
+                pending_time = successObject.optString("pending_time_ist", "");
+                spare_assigned_time = successObject.optString("as_time_ist","");
+                handover_time = successObject.optString("handover_time_ist","");
                 emp = successObject.optString("eid");
                 Log.d("emp", emp);
                 Log.d("a_time", a_time);
@@ -326,6 +376,9 @@ public class cmofaultdetail extends AppCompatActivity{
                     t10.setText(n_time);
                     t11.setText(s_time);
                     t12.setText(c_time);
+                    t20.setText(pending_time);
+                    t22.setText(spare_assigned_time);
+                    t24.setText(handover_time);
                 }
               if(i_time.equalsIgnoreCase("null"))
                 {
@@ -347,7 +400,24 @@ public class cmofaultdetail extends AppCompatActivity{
                     t12.setVisibility(View.GONE);
                     t18.setVisibility(View.GONE);
                 }
+                if(pending_time.equalsIgnoreCase("null"))
+                {
+                    t19.setVisibility(View.GONE);
+                    t20.setVisibility(View.GONE);
 
+                }
+                if(spare_assigned_time.equalsIgnoreCase("null"))
+                {
+                    t21.setVisibility(View.GONE);
+                    t22.setVisibility(View.GONE);
+
+                }
+                if(handover_time.equalsIgnoreCase("null"))
+                {
+                    t23.setVisibility(View.GONE);
+                    t24.setVisibility(View.GONE);
+
+                }
 
 
                 // Notify the adapter that the data set has changed

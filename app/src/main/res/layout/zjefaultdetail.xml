@@ -80,7 +80,7 @@
     <TextView
         android:id="@+id/emp"
         android:layout_width="wrap_content"
-        android:layout_marginTop="360dp"
+        android:layout_marginTop="350dp"
         android:layout_marginStart="20dp"
         android:textSize="15dp"
         android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
     <TextView
         android:id="@+id/a_time"
         android:layout_width="wrap_content"
-        android:layout_marginTop="390dp"
+        android:layout_marginTop="370dp"
         android:layout_marginStart="20dp"
         android:textSize="15dp"
         android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
     <TextView
         android:id="@+id/i_time"
         android:layout_width="wrap_content"
-        android:layout_marginTop="420dp"
+        android:layout_marginTop="390dp"
         android:layout_marginStart="20dp"
         android:textSize="15dp"
         android:layout_height="wrap_content"
@@ -110,7 +110,7 @@
     <TextView
         android:id="@+id/n_time"
         android:layout_width="wrap_content"
-        android:layout_marginTop="450dp"
+        android:layout_marginTop="410dp"
         android:layout_marginStart="20dp"
         android:textSize="15dp"
         android:layout_height="wrap_content"
@@ -120,7 +120,7 @@
     <TextView
         android:id="@+id/s_time"
         android:layout_width="wrap_content"
-        android:layout_marginTop="480dp"
+        android:layout_marginTop="430dp"
         android:layout_marginStart="20dp"
         android:textSize="15dp"
         android:layout_height="wrap_content"
@@ -130,11 +130,41 @@
     <TextView
         android:id="@+id/c_time"
         android:layout_width="wrap_content"
-        android:layout_marginTop="510dp"
+        android:layout_marginTop="530dp"
         android:layout_marginStart="20dp"
         android:textSize="15dp"
         android:layout_height="wrap_content"
         android:text="Closed Time: "
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/pending_time"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="450dp"
+        android:layout_marginStart="20dp"
+        android:textSize="15dp"
+        android:layout_height="wrap_content"
+        android:text="Pending Time: "
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/spare_assigned_time"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="470dp"
+        android:layout_marginStart="20dp"
+        android:textSize="12dp"
+        android:layout_height="wrap_content"
+        android:text="spare_assigned Time: "
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/handover_time"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="490dp"
+        android:layout_marginStart="20dp"
+        android:textSize="15dp"
+        android:layout_height="wrap_content"
+        android:text="handover Time: "
         android:textColor="@color/black"
         android:textStyle="bold"/>
 
@@ -205,7 +235,7 @@
         android:layout_width="255dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="360dp"
+        android:layout_marginTop="350dp"
         android:layout_toRightOf="@+id/faultstatus"
         android:text=""
         android:textSize="15dp" />
@@ -214,7 +244,7 @@
         android:layout_width="255dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="390dp"
+        android:layout_marginTop="370dp"
         android:layout_toRightOf="@+id/faultstatus"
         android:text=""
         android:textSize="15dp" />
@@ -223,7 +253,7 @@
         android:layout_width="255dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="420dp"
+        android:layout_marginTop="390dp"
         android:layout_toRightOf="@+id/faultstatus"
         android:text=""
         android:textSize="15dp" />
@@ -232,7 +262,7 @@
         android:layout_width="255dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="450dp"
+        android:layout_marginTop="410dp"
         android:layout_toRightOf="@+id/faultstatus"
         android:text=""
         android:textSize="15dp" />
@@ -241,7 +271,7 @@
         android:layout_width="255dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="480dp"
+        android:layout_marginTop="430dp"
         android:layout_toRightOf="@+id/faultstatus"
         android:text=""
         android:textSize="15dp" />
@@ -250,15 +280,37 @@
         android:layout_width="255dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="510dp"
+        android:layout_marginTop="530dp"
         android:layout_toRightOf="@+id/faultstatus"
         android:text=""
         android:textSize="15dp" />
-
-
-
-
-
+    <TextView
+        android:id="@+id/pending_value"
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="450dp"
+        android:layout_toRightOf="@+id/faultstatus"
+        android:text=""
+        android:textSize="15dp" />
+    <TextView
+        android:id="@+id/assigned_spare_value"
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="470dp"
+        android:layout_toRightOf="@+id/faultstatus"
+        android:text=""
+        android:textSize="15dp" />
+    <TextView
+        android:id="@+id/handover_value"
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="490dp"
+        android:layout_toRightOf="@+id/faultstatus"
+        android:text=""
+        android:textSize="15dp" />
 
     <LinearLayout
         android:id="@+id/bottom_navigation"
@@ -321,7 +373,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/blue"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="600dp"
+        android:layout_marginTop="550dp"
         android:layout_toRightOf="@+id/employeeSpinner"
         android:text="Assign"/>
 
@@ -330,8 +382,37 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="600dp"
+        android:layout_marginTop="550dp"
         android:minHeight="48dp"
         android:spinnerMode="dropdown" />
+    <Spinner
+        android:id="@+id/faulttypeSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="550dp"
+        android:minHeight="48dp"
+        android:layout_toRightOf="@+id/sparerq"
+        android:spinnerMode="dropdown" />
+    <Button
+        android:id="@+id/sparerq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/blue"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="550dp"
+        android:layout_toRightOf="@+id/employeeSpinner"
+        android:text="spare_req"/>
+
+
+
+    <Button
+        android:id="@+id/closeb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Close"
+        android:backgroundTint="@color/blue"
+        android:layout_marginTop="620dp"
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

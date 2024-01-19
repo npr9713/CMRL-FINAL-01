@@ -38,7 +38,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class acceptedreqdetail extends AppCompatActivity {
-    ImageButton b1, b2, b3;
+    ImageButton b1, b2, b3,b4;
     Button progress, closed, spare,need;
     TextView t1, t2, t3, t4, t5, t6;
 
@@ -76,6 +76,7 @@ public class acceptedreqdetail extends AppCompatActivity {
         b1 = findViewById(R.id.homebut);
         b2 = findViewById(R.id.profilebut);
         b3 = findViewById(R.id.logsbut);
+        b4 = findViewById(R.id.handoverbutton);
         progress = findViewById(R.id.progress);
         spare = findViewById(R.id.sparereqb);
         closed = findViewById(R.id.closeb);
@@ -112,6 +113,14 @@ public class acceptedreqdetail extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(acceptedreqdetail.this, l1acceptedreq.class);
+                i.putExtra("token", token);
+                startActivity(i);
+            }
+        });
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(acceptedreqdetail.this, l1sparereq_view.class);
                 i.putExtra("token", token);
                 startActivity(i);
             }

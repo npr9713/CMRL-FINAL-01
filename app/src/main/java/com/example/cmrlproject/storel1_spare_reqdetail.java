@@ -1,4 +1,5 @@
 package com.example.cmrlproject;
+
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,9 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,93 +26,154 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
 
-// Import statements
-
-// Import statements
-
-public class faultdetail extends AppCompatActivity {
-    ImageButton b1, b2, b3,b4;
-    Button acc;
-    TextView t1, t2, t3, t4, t5, t6;
+public class storel1_spare_reqdetail extends AppCompatActivity {
+    TextView t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11,t12,t13,t14,t15,t16,t17,t18;
+    EditText e1;
+    Button b5;
+    ImageButton b1,b2,b3,b4;
     String token;
+    String request_type;
+    String date;
+    String station;
+    String mr_id;
+    String sle_name;
+    String sle_no;
+    String unit;
+    String need_spare;
+    String por;
+    String fsno;
+    String description;
+    String status;
+
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.faultdetail);
-        b1 = findViewById(R.id.homebut);
-        b2 = findViewById(R.id.profilebut);
-        b3 = findViewById(R.id.logsbut);
-        b4 = findViewById(R.id.handoverbutton);
-        t1 = findViewById(R.id.acceptedackno);
-        t2 = findViewById(R.id.accepteddateandtime);
-        t3 = findViewById(R.id.acceptedstation);
-        t4 = findViewById(R.id.accepteddevice);
-        t5 = findViewById(R.id.accepteddeviceno);
-        t6 = findViewById(R.id.acceptedstatus);
-        acc = findViewById(R.id.acceptb);
+        setContentView(R.layout.storel1_spare_reqdetail);
         Intent intent = getIntent();
-        token = intent.getStringExtra("token");
-        Log.d("token-from FD", token);
+        token=  intent.getStringExtra("token");
+        t1=findViewById(R.id.reqtype);
+        t2=findViewById(R.id.date);
+        t3=findViewById(R.id.station);
+        t4=findViewById(R.id.slename);
+        t5=findViewById(R.id.sleno);
+        t6=findViewById(R.id.uniname);
+        t7=findViewById(R.id.sparereq);
+        t8=findViewById(R.id.reqby);
+        t9=findViewById(R.id.fspareslno);
+        t10=findViewById(R.id.fdesc);
+        t11=findViewById(R.id.status);
+        t12=findViewById(R.id.frsle);
+        t13=findViewById(R.id.frsleno);
+        t14=findViewById(R.id.wsno);
+        t15=findViewById(R.id.mrid);
+        t16 = findViewById(R.id.textView41);
+        t17 = findViewById(R.id.textView42);
+        t18 = findViewById(R.id.textView43);
+        b1=findViewById(R.id.sparemov);
+        b2=findViewById(R.id.homebut);
+        b3=findViewById(R.id.dashboardbut);
+        b4=findViewById(R.id.profilebut);
+        e1=findViewById(R.id.serialno);
+        b5=findViewById(R.id.button4);
+        if (intent != null && intent.hasExtra("ackno")) {
+            String fsle=null,fsleno=null,wsno=null;
+            date = intent.getStringExtra("date");
+            station = intent.getStringExtra("station");
+            mr_id = intent.getStringExtra("mr_id");
+            sle_name = intent.getStringExtra("sle_name");
+            sle_no = intent.getStringExtra("sle_no");
+            unit = intent.getStringExtra("unit");
+            need_spare = intent.getStringExtra("need_spare");
+            por = intent.getStringExtra("por");
+            fsno = intent.getStringExtra("fsno");
+            description = intent.getStringExtra("description");
+            status = intent.getStringExtra("status");
+            request_type = intent.getStringExtra("request_type");
+//            if(fsle==null)
+//            {
+//                t16.setVisibility(View.GONE);
+//            }
+//            if(fsleno==null)
+//            {
+//                t17.setVisibility(View.GONE);
+//            }
+//            if(wsno==null)
+//            {
+//                t18.setVisibility(View.GONE);
+//            }
+            if("against faulty spare".equalsIgnoreCase(request_type))
+            {
+            t1.setText(request_type);
+            t2.setText(date);
+            t3.setText(station);
+            t4.setText(sle_name);
+            t5.setText(sle_no);
+            t6.setText(unit);
+            t7.setText(need_spare);
+            t8.setText(por);
+            t9.setText(fsno);
+            t10.setText(description);
+            t11.setText(status);
+            t15.setText(mr_id);
+            t18.setVisibility(View.GONE);
+            t17.setVisibility(View.GONE);
+                t16.setVisibility(View.GONE);
+            }
+            if(!("pending_sr".equalsIgnoreCase(status)))
+            {
+                e1.setVisibility(View.GONE);
+                b5.setVisibility(View.GONE);
+            }
+        }
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(storel1_spare_reqdetail.this, storel1dashboard.class);
+                i.putExtra("token",token);
+                startActivity(i);
+            }
+        });
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(faultdetail.this, l1home.class);
-                i.putExtra("token", token);
+                Intent i=new Intent(storel1_spare_reqdetail.this, storel1_sparemov.class);
+                i.putExtra("token",token);
+                startActivity(i);
+            }
+        });
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(storel1_spare_reqdetail.this, storel1profile.class);
+                i.putExtra("token",token);
                 startActivity(i);
             }
         });
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(faultdetail.this, l1profile.class);
-                i.putExtra("token", token);
+                Intent i=new Intent(storel1_spare_reqdetail.this, storel1home.class);
+                i.putExtra("token",token);
                 startActivity(i);
             }
         });
-        b3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(faultdetail.this, l1acceptedreq.class);
-                i.putExtra("token", token);
-                startActivity(i);
-            }
-        });
-
-        //checking whether the fault is available or not and we have to see properly
-
-        if (intent != null && intent.hasExtra("ackno")) {
-            String ackno = intent.getStringExtra("ackno");
-            String date = intent.getStringExtra("date");
-            String station = intent.getStringExtra("station");
-            String device = intent.getStringExtra("device");
-            String deviceno = intent.getStringExtra("deviceno");
-            String status = intent.getStringExtra("status");
-
-
-            t1.setText(ackno);
-            t2.setText(date);
-            t3.setText(station);
-            t4.setText(device);
-            t5.setText(deviceno);
-            t6.setText(status);
-        }
-        acc.setOnClickListener(new View.OnClickListener() {
+        b5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new HttpRequestTask().execute();
             }
         });
-    }
 
+
+    }
     private class HttpRequestTask extends AsyncTask<Void, Void, String> {
         @Override
         protected String doInBackground(Void... voids) {
-            String apiUrl = "https://98bb-2401-4900-6323-51b1-741b-7ac2-15bb-9d07.ngrok-free.app/l1_self_assign";
+            String apiUrl = "https://98bb-2401-4900-6323-51b1-741b-7ac2-15bb-9d07.ngrok-free.app/request_assign";
 
             try {
                 URL url = new URL(apiUrl);
@@ -126,8 +189,6 @@ public class faultdetail extends AppCompatActivity {
                     urlConnection.setRequestProperty("Accept", "application/json");
 
                     // Retrieve the token from the intent
-                    Intent intent = getIntent();
-                    String token = intent.getStringExtra("token");
                     urlConnection.setRequestProperty("Authorization", "Bearer " + token);
 
                     urlConnection.setDoOutput(true);
@@ -189,28 +250,25 @@ public class faultdetail extends AppCompatActivity {
         }
 
         private void handleSuccessResponse(JSONObject jsonResponse) throws JSONException {
-            JSONArray successArray = jsonResponse.getJSONArray("success");
-            JSONObject assignmentObject = successArray.getJSONObject(0);
+            int success = jsonResponse.getInt("success");
 
-            String aid = assignmentObject.getString("aid");
-            String ackno = assignmentObject.getString("ackno");
-            String eid = assignmentObject.getString("eid");
-            String hoa = assignmentObject.getString("hoa");
-            String time = assignmentObject.getString("a_time");
-            String status = assignmentObject.getString("status");
 
-            showAssignmentSuccessAlert();
+            if (success == 1) {
+                showAssignmentSuccessAlert();
+            }else{
+                showAssignmentUnSuccessAlert();
+            }
         }
 
         private void showAssignmentSuccessAlert() {
             Log.d("status","assigned");
-            AlertDialog.Builder builder = new AlertDialog.Builder(faultdetail.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(storel1_spare_reqdetail.this);
             builder.setTitle("Fault Assigned");
             builder.setMessage("The fault has been assigned successfully.");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    Intent intent = new Intent(faultdetail.this,l1acceptedreq.class);
+                    Intent intent = new Intent(storel1_spare_reqdetail.this,storel1home.class);
                     intent.putExtra("token",token);
                     startActivity(intent);
                 }
@@ -218,13 +276,13 @@ public class faultdetail extends AppCompatActivity {
             builder.show();
         }
         private void showAssignmentUnSuccessAlert() {
-            AlertDialog.Builder builder = new AlertDialog.Builder(faultdetail.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(storel1_spare_reqdetail.this);
             builder.setTitle("Fault Assigned");
             builder.setMessage("The fault has been assigned Already");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    Intent intent = new Intent(faultdetail.this,l1home.class);
+                    Intent intent = new Intent(storel1_spare_reqdetail.this,storel1home.class);
                     intent.putExtra("token",token);
                     startActivity(intent);
                 }
@@ -233,7 +291,7 @@ public class faultdetail extends AppCompatActivity {
         }
 
         private void showTokenExpiredAlert() {
-            AlertDialog.Builder builder = new AlertDialog.Builder(faultdetail.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(storel1_spare_reqdetail.this);
             builder.setTitle("Session Expired");
             builder.setMessage("Your session has expired. Please log in again.");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -247,7 +305,7 @@ public class faultdetail extends AppCompatActivity {
         }
 
         private void redirectToLoginPage() {
-            Intent intent = new Intent(faultdetail.this, l1login.class);
+            Intent intent = new Intent(storel1_spare_reqdetail.this, storelogin.class);
             startActivity(intent);
             finish();  // Optional: Close the current activity if needed
         }
@@ -264,14 +322,23 @@ public class faultdetail extends AppCompatActivity {
 
             String hoa = "Self";
             String status = "Assigned";
+            Log.d("mr_id",mr_id);Log.d("sle_no",sle_no);Log.d("sno",e1.getText().toString());Log.d("spare_name",need_spare);Log.d("station",station);
+            mr_id = mr_id.trim();
 
-            return String.format("{\"ackno\":\"%s\",\"hoa\":\"%s\",\"status\":\"%s\"}",
-                    t1.getText().toString(), hoa, status);
+// Escape special characters in e1.getText().toString()
+            String escapedE1 = e1.getText().toString().replace("\"", "\\\"");
+            String jsonString = String.format("{\"mr_id\":\"%s\",\"sle_no\":\"%s\",\"sno\":\"%s\",\"spare_name\":\"%s\",\"station\":\"%s\"}",
+                    mr_id, sle_no, escapedE1, need_spare, station);
+
+// Log the generated JSON string
+            System.out.println("Generated JSON: " + jsonString);
+            return jsonString;
+
         } catch (Exception e) {
             Log.e("JSON Error", "Error creating JSON body: " + e.getMessage());
             return null;
         }
     }
+
+
 }
-
-

@@ -25,9 +25,116 @@
         <item>Need Support</item>
         <item>Spare Request</item>
         <item>Closed</item>
+        <item>Assigned</item>
+        <item>pending_sr</item>
+        <item>handover</item>
+        <item>spare_assigned</item>
     </string-array>
     <string-array name="store_user_codes">
         <item>Junior Engineer</item>
         <item>Level 1</item>
     </string-array>
+    <string-array name="spare_request_type_codes">
+        <item>against Faulty Spare</item>
+        <item>Non-Operational</item>
+        <item>Reserved Spare</item>
+        <item>Taken From SLE</item>
+        <item>Modification</item>
+        <item>Handovered Spare Faulty</item>
+    </string-array>
+    <string-array name="SLE_name_codes">
+        <item>TVM</item>
+        <item>EFO</item>
+        <item>TOM</item>
+        <item>AG</item>
+        <item>AVM</item>
+        <item>Server</item>
+        <item>TVM-IN</item>
+        <item>EFO-IN</item>
+        <item>TOM-IN</item>
+        <item>AG-IN</item>
+        <item>AVM-IN</item>
+        <item>Server-IN</item>
+        <item>PARKING</item>
+        <item>NCMC_TOM</item>
+    </string-array>
+    <string-array name="SLE_no_codes">
+        <item>TOM-01</item>
+        <item>TOM-02</item>
+        <item>TOM-03</item>
+        <item>TOM-04</item>
+        <item>TOM-11</item>
+        <item>TOM-12</item>
+        <item>TOM-13</item>
+        <item>TOM-14</item>
+        <item>TOM-21</item>
+        <item>TOM-22</item>
+    </string-array>
+    <string-array name="unit_name_codes">
+        <item>ECU_UNIT</item>
+        <item>RW_Unit_Antenna</item>
+        <item>PDU_Units</item>
+        <item>DIO_Unit_Pheriperals</item>
+        <item>DISPLAY_UNITS</item>
+        <item>Amplifiers_Speakers</item>
+        <item>Printers</item>
+        <item>BNS_Flap_Unit</item>
+        <item>Gunnebo_Flap_Unit</item>
+        <item>AG_Token_Capturing_Unit</item>
+        <item>EFO_TOM_Token_Processing_Unit</item>
+        <item>TOM_EFO_Mech_Assly_Unit</item>
+        <item>TOM_EFO_Cables</item>
+        <item>TOM_EFO_Mechanical_Units</item>
+        <item>AG_Cables</item>
+        <item>AG_Lock_Modules</item>
+        <item>AG_Plastic_Items</item>
+        <item>TVM_AVM_Banknote_Unit</item>
+        <item>TVM_COINUNIT</item>
+        <item>TVM_Cables</item>
+        <item>TVM_Mechanical_Items</item>
+        <item>Others</item>
+        <item>PARKING_DEVICE</item>
+        <item>QR_OPENLOOP</item>
+    </string-array>
+    <string-array name="SPARE_REQUESTED_codes">
+        <item>AG/AVM ECU</item>
+        <item>TOM/EFO ECU</item>
+        <item>TVM ECU</item>
+        <item>SSD</item>
+        <item>DOM</item>
+        <item>CF Card</item>
+        <item>24V to 12V Converter</item>
+        <item>24V to 12V Converter(Small)</item>
+        <item>AG ECU MOUNTING PLATE (SILVER)</item>
+        <item>AG ECU MOUNTING PLATE (BLACK)</item>
+        <item>TOM/EFO ECU Mounting Plate</item>
+        <item>TVM ECU Mounting Plate</item>
+    </string-array>
+    <string-array name="requested_by_codes">
+        <item>PRIYA M</item>
+        <item>GOPI R</item>
+        <item>GAYATHIRI</item>
+        <item>RAJASHWARI</item>
+        <item>MURUGAN</item>
+        <item>VELMURUGAN</item>
+        <item>KISHORE</item>
+        <item>ABINAYA</item>
+        <item>SARAVANAN</item>
+        <item>LIVINGSTON</item>
+    </string-array>
+    <string-array name="store_status_codes">
+        <item>All Status</item>
+        <item>pending_sr</item>
+        <item>handover</item>
+        <item>Closed</item>
+        <item>spare_assigned</item>
+    </string-array>
+    <string-array name="moved_station_codes">
+        <item>SKO STORE</item>
+        <item>STI STORE</item>
+        <item>SAN STORE</item>
+        <item>ADMIN STORE</item>
+        <item>SMA STORE</item>
+    </string-array>
+
 </resources>

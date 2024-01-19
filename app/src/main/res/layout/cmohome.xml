@@ -70,15 +70,16 @@
 
     </LinearLayout>
 
-    <Spinner
-        android:id="@+id/stationSpinner"
+    <AutoCompleteTextView
+        android:id="@+id/stationAutoCompleteTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:spinnerMode="dropdown"
-        android:layout_marginStart="20dp"
-        android:layout_toRightOf="@+id/textView15"
+        android:layout_marginStart="90dp"
         android:backgroundTint="@color/blue"
-        android:layout_marginTop="100dp"/>
+        android:layout_marginTop="90dp"
+        android:hint="Station:"
+
+        />
 
     <EditText
         android:id="@+id/devicecmoh"
@@ -92,15 +93,7 @@
         android:inputType="text"
         android:hint="Device" />
 
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:textColor="@color/black"
-        android:layout_marginTop="100dp"
-        android:layout_marginStart="30dp"
-        android:text="Station:" />
+
 
     <EditText
         android:id="@+id/devicenocmoh"

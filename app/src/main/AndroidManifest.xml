@@ -130,6 +130,47 @@
             android:name=".storelogin"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".storehome"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".against_faulty_spare"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".storel1home"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".storel1profile"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".storel1dashboard"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".storel1_sparemov"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".storel1_sparemov_req"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".storel1_spare_reqdetail"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".l1sparereq_view"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".l1sparereq_accept"
+            android:exported="true">
+        </activity>
+
 
     </application>
 

@@ -66,6 +66,19 @@ public class l1login extends AppCompatActivity {
 
             }
         });
+    }public void onBackPressed() {
+        // Check if the user is logged in (you may use SharedPreferences or other methods)
+        SharedPreferences sharedPreferences = getSharedPreferences("mypref", MODE_PRIVATE);
+        boolean isLoggedIn = sharedPreferences.contains("AccessToken-l1");
+
+        if (isLoggedIn) {
+            super.onBackPressed(); // Allow the default back behavior
+        } else {
+            // If the user is not logged in, navigate to the login page
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     private class HttpRequestTask extends AsyncTask<String, Void, String> {

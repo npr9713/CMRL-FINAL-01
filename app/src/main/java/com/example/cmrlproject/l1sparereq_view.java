@@ -33,7 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class l1home extends AppCompatActivity {
+public class l1sparereq_view extends AppCompatActivity {
     private JSONArray successArray;
 
     String token;
@@ -54,7 +54,7 @@ public class l1home extends AppCompatActivity {
         faultListView.setAdapter(adapter);
 
         // Execute the AsyncTask to make the HTTP POST request
-        new HttpRequestTask().execute("https://98bb-2401-4900-6323-51b1-741b-7ac2-15bb-9d07.ngrok-free.app/view");
+        new HttpRequestTask().execute("https://98bb-2401-4900-6323-51b1-741b-7ac2-15bb-9d07.ngrok-free.app/handover_view");
 
         // Other initialization code
         Intent i = getIntent();
@@ -68,16 +68,22 @@ public class l1home extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(l1home.this, l1acceptedreq.class);
+                Intent i = new Intent(l1sparereq_view.this, l1acceptedreq.class);
                 i.putExtra("token", token);
                 startActivity(i);
+            }
+        });
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(l1sparereq_view.this, l1home.class);
             }
         });
 
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(l1home.this, l1profile.class);
+                Intent i = new Intent(l1sparereq_view.this, l1profile.class);
                 i.putExtra("token", token);
                 startActivity(i);
             }
@@ -85,7 +91,7 @@ public class l1home extends AppCompatActivity {
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(l1home.this, l1sparereq_view.class);
+                Intent i = new Intent(l1sparereq_view.this, l1sparereq_view.class);
                 i.putExtra("token", token);
                 startActivity(i);
             }
@@ -109,14 +115,15 @@ public class l1home extends AppCompatActivity {
     }
 
     private void openFaultDetails(JSONObject successObject) throws JSONException {
-        Intent intent = new Intent(this, faultdetail.class);
+        Intent intent = new Intent(this, l1sparereq_accept.class);
         String ackno = successObject.getString("ackno");
         Log.d("ACKNO",ackno);
-        String date = successObject.getString("dt");
+        String date = successObject.getString("time_ist");
         String station = successObject.getString("station");
-        String device = successObject.getString("device");
-        String deviceno = successObject.getString("deviceno");
-        String status = successObject.getString("description");
+        String device = successObject.getString("spare_name");
+        String deviceno = successObject.getString("sle_no");
+        String status = successObject.getString("status");
+        String storeLoc = successObject.getString("moved_location");
         intent.putExtra("token",token);
         intent.putExtra("ackno", ackno);
         intent.putExtra("date", date);
@@ -124,6 +131,7 @@ public class l1home extends AppCompatActivity {
         intent.putExtra("device", device);
         intent.putExtra("deviceno", deviceno);
         intent.putExtra("status", status);
+        intent.putExtra("location",storeLoc);
         startActivity(intent);
     }
 
@@ -192,7 +200,7 @@ public class l1home extends AppCompatActivity {
                 }
             } else {
                 // Handle the case where the result is null
-                Toast.makeText(l1home.this, "Error fetching data from server", Toast.LENGTH_SHORT).show();
+                Toast.makeText(l1sparereq_view.this, "Error fetching data from server", Toast.LENGTH_SHORT).show();
             }
         }
         private void parseAndDisplayResponse(JSONObject jsonResponse) {
@@ -205,7 +213,7 @@ public class l1home extends AppCompatActivity {
 
                     // Get values from JSON
                     String station = successObject.getString("station");
-                    String device = successObject.getString("device");
+                    String device = successObject.getString("spare_name");
                     String status = successObject.getString("status");
 
                     // Add station and ackno to the list
@@ -222,7 +230,7 @@ public class l1home extends AppCompatActivity {
 
 
         private void showTokenExpiredAlert() {
-            AlertDialog.Builder builder = new AlertDialog.Builder(l1home.this); // Pass the context of l1home activity
+            AlertDialog.Builder builder = new AlertDialog.Builder(l1sparereq_view.this); // Pass the context of l1home activity
             builder.setTitle("Session Expired");
             builder.setMessage("Your session has expired. Please log in again.");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -240,7 +248,7 @@ public class l1home extends AppCompatActivity {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("AccessToken-l1",null);
             editor.apply();
-            Intent intent = new Intent(l1home.this, l1login.class);
+            Intent intent = new Intent(l1sparereq_view.this, l1login.class);
             startActivity(intent);
             finish();  // Optional: Close the current activity if needed
         }

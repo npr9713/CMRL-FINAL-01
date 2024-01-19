@@ -1,5 +1,4 @@
 package com.example.cmrlproject;
-
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,9 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.Spinner;
-
+import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,69 +25,47 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class cmohome extends AppCompatActivity {
-    EditText e1, e2, e3, e4;
+public class against_faulty_spare extends AppCompatActivity {
+
+    TextView t1;
+    String fault_type;
+    EditText e1, e2, e3;
+    AutoCompleteTextView a1,a2,a3,a4,a5,a6;
     Button b1;
-    ImageButton i1, i2, i3, i4, i5;
-    String selectedStation, token;
-    private AutoCompleteTextView stationAutoCompleteTextView; // Variable to store the selected station
+    String token,ackno;
+    AutoCompleteTextView stationAutoCompleteTextView, slenameAutoCompleteTextView, slenoAutoCompleteTextView, unitnameAutoCompleteTextView;
+    AutoCompleteTextView sparerequestedAutoCompleteTextView, requestedbyAutoCompleteTextView;
+    String selectedStation, selectedSLEname, selectedSLEno, selectedUnitname, selectedSparereq, selectedReqby;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cmohome);
-
-        e1 = findViewById(R.id.devicecmoh);
-        e2 = findViewById(R.id.devicenocmoh);
-        e3 = findViewById(R.id.faultdescmoh);
-        e4 = findViewById(R.id.faultackcmoh);
-        b1 = findViewById(R.id.submitbcmoh);
-        i1 = findViewById(R.id.addempbut);
-        i2 = findViewById(R.id.homebut);
-        i3 = findViewById(R.id.viewreqbut);
-        i4 = (ImageButton) findViewById(R.id.profilebut);
-        i5 = (ImageButton) findViewById(R.id.dashboardbut);
-
+        setContentView(R.layout.against_faulty_spare);
+        t1 = findViewById(R.id.sparereqtype);
         Intent i = getIntent();
         token = i.getStringExtra("token");
+        ackno = i.getStringExtra("ackno");
+        Log.d("token",token);
+        Log.d("ackno",ackno);
+        e2 = findViewById(R.id.faulty_spare_SL_no);
+        e3 = findViewById(R.id.fault_desc);
+        b1 = findViewById(R.id.submit);
+        a1 = findViewById(R.id.sparerequested);
+        a2 = findViewById(R.id.slenameAutoCompleteTextView);
+        a3 = findViewById(R.id.slenoAutoCompleteTextView);
+        a4 = findViewById(R.id.stationAutoCompleteTextView);
+        a5 = findViewById(R.id.unitnameAutoCompleteTextView);
+        a6 = findViewById(R.id.requestedbyAutoCompleteTextView);
 
-        i1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(cmohome.this, cmoaddemp.class);
-                i.putExtra("token", token);
-                startActivity(i);
-            }
-        });
-
-        i3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(cmohome.this, cmoviewreq.class);
-                i.putExtra("token", token);
-                startActivity(i);
-            }
-        });
-
-        i4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(cmohome.this, cmoprofile.class);
-                i.putExtra("token", token);
-                startActivity(i);
-            }
-        });
-
-        i5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(cmohome.this, cmodashboard.class);
-                i.putExtra("token", token);
-                startActivity(i);
-            }
-        });
+        fault_type = i.getStringExtra("fault type");
+        t1.setText(fault_type);
 
         stationAutoCompleteTextView = findViewById(R.id.stationAutoCompleteTextView);
+        slenameAutoCompleteTextView = findViewById(R.id.slenameAutoCompleteTextView);
+        slenoAutoCompleteTextView = findViewById(R.id.slenoAutoCompleteTextView);
+        unitnameAutoCompleteTextView = findViewById(R.id.unitnameAutoCompleteTextView);
+        sparerequestedAutoCompleteTextView = findViewById(R.id.sparerequested);
+        requestedbyAutoCompleteTextView = findViewById(R.id.requestedbyAutoCompleteTextView);
 
         // Replace R.array.station_codes with the array of station names
         String[] stationArray = getResources().getStringArray(R.array.station_codes);
@@ -105,20 +80,76 @@ public class cmohome extends AppCompatActivity {
                 Log.d("selected location", selectedStation);
             }
         });
+        String[] SLEnameArray = getResources().getStringArray(R.array.SLE_name_codes);
 
+        ArrayAdapter<String> SLEnameAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, SLEnameArray);
+        slenameAutoCompleteTextView.setAdapter(SLEnameAdapter);
+
+        slenameAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedSLEname = (String) parent.getItemAtPosition(position);
+                Log.d("selected location", selectedSLEname);
+            }
+        });
+        String[] SLEnoArray = getResources().getStringArray(R.array.SLE_no_codes);
+
+        ArrayAdapter<String> SLEnoAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, SLEnoArray);
+        slenoAutoCompleteTextView.setAdapter(SLEnoAdapter);
+
+        slenoAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedSLEno = (String) parent.getItemAtPosition(position);
+                Log.d("selected location", selectedSLEno);
+            }
+        });
+        String[] UnitnameArray = getResources().getStringArray(R.array.unit_name_codes);
+
+        ArrayAdapter<String> UnitnameAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, UnitnameArray);
+        unitnameAutoCompleteTextView.setAdapter(UnitnameAdapter);
+
+        unitnameAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedUnitname = (String) parent.getItemAtPosition(position);
+                Log.d("selected location", selectedUnitname);
+            }
+        });
+        String[] SparerequestedArray = getResources().getStringArray(R.array.SPARE_REQUESTED_codes);
+
+        ArrayAdapter<String> SparerequestedAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, SparerequestedArray);
+        sparerequestedAutoCompleteTextView.setAdapter(SparerequestedAdapter);
+
+        sparerequestedAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedSparereq = (String) parent.getItemAtPosition(position);
+                Log.d("selected location", selectedSparereq);
+            }
+        });
+        String[] RequestedbyArray = getResources().getStringArray(R.array.requested_by_codes);
+
+        ArrayAdapter<String> RequestedbyAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, RequestedbyArray);
+        requestedbyAutoCompleteTextView.setAdapter(RequestedbyAdapter);
+
+        requestedbyAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedReqby = (String) parent.getItemAtPosition(position);
+                Log.d("selected location", selectedReqby);
+            }
+        });
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String device = e1.getText().toString();
-                String deviceNo = e2.getText().toString();
-                String faultDesc = e3.getText().toString();
-                String faultAck = e4.getText().toString();
+                new CreateRequest().execute();
 
-                // Use selectedStation where you need it
-                new cmohome.CreateRequest().execute();
             }
         });
+
     }
+
     private class CreateRequest extends AsyncTask<Void, Void, String> {
 //        private final String token;
 
@@ -127,7 +158,7 @@ public class cmohome extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Void... voids) {
-            String apiUrl = "https://98bb-2401-4900-6323-51b1-741b-7ac2-15bb-9d07.ngrok-free.app/insert";
+            String apiUrl = "https://98bb-2401-4900-6323-51b1-741b-7ac2-15bb-9d07.ngrok-free.app/zje_afs";
 
             try {
                 URL url = new URL(apiUrl);
@@ -202,16 +233,15 @@ public class cmohome extends AppCompatActivity {
 
             if (success == 1) {
                 showAssignmentSuccessAlert();
-            }else{
+            } else {
                 showUnsuccessfulAssignmentAlert();
             }
         }
 
 
-
         private void showAssignmentSuccessAlert() {
-            AlertDialog.Builder builder = new AlertDialog.Builder(cmohome.this);
-            builder.setTitle("Fault Created");
+            AlertDialog.Builder builder = new AlertDialog.Builder(against_faulty_spare.this);
+            builder.setTitle("Against faulty spare Created");
             builder.setMessage("The New fault has been created successfully.");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
@@ -222,8 +252,9 @@ public class cmohome extends AppCompatActivity {
             builder.show();
             // Optional: Close the current activity if needed
         }
+
         private void showUnsuccessfulAssignmentAlert() {
-            AlertDialog.Builder builder = new AlertDialog.Builder(cmohome.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(against_faulty_spare.this);
             builder.setTitle("Fault Creation Failed");
             builder.setMessage("The fault creation was unsucessfull.");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -238,7 +269,7 @@ public class cmohome extends AppCompatActivity {
 
         private void showTokenExpiredAlert() {
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(cmohome.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(against_faulty_spare.this);
             builder.setTitle("Session Expired");
             builder.setMessage("Your session has expired. Please log in again.");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -252,23 +283,25 @@ public class cmohome extends AppCompatActivity {
         }
 
         private void redirectToLoginPage() {
-            Intent intent = new Intent(cmohome.this, cmologin.class);
+            Intent intent = new Intent(against_faulty_spare.this, zjelogin.class);
             startActivity(intent);
             finish();  // Optional: Close the current activity if needed
         }
+
         private void redirectToReqPage() {
-            Intent intent = new Intent(cmohome.this, cmoviewreq.class);
+            Intent intent = new Intent(against_faulty_spare.this, zjeviewreq.class);
             intent.putExtra("token", token);
             startActivity(intent);
             finish();  // Optional: Close the current activity if needed
         }
     }
+
     @SuppressLint("DefaultLocale")
     private String createJsonBody() {
         try {
             // Include latitude, longitude, and ackno in the JSON body
-            return String.format("{\"Station\":\"%s\", \"Device\":\"%s\", \"Device_Number\":\"%s\", \"Fault_Ack_Number\":\"%s\",\"Fault_Description\":\"%s\"}",
-                   selectedStation,e1.getText().toString(),Integer.parseInt(e2.getText().toString()),Integer.parseInt(e4.getText().toString()),e3.getText().toString());
+            return String.format("{\"ackno\":\"%s\", \"des\":\"%s\", \"fsno\":\"%s\", \"need_spare\":\"%s\",\"sle_name\":\"%s\",\"sle_no\":\"%s\",\"station\":\"%s\",\"unit\":\"%s\"}",
+                    ackno, e3.getText().toString(), e2.getText().toString(), a1.getText().toString(),a2.getText().toString(),a3.getText().toString(),a4.getText().toString(),a5.getText().toString());
 
         } catch (Exception e) {
             Log.e("JSON Error", "Error creating JSON body: " + e.getMessage());

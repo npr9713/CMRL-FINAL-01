@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Creating Spare Request"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:background="@color/blue"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        tools:layout_editor_absoluteX="150dp"
+        tools:layout_editor_absoluteY="32dp" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Type of Request:"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_below="@+id/text"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"/>
+
+    <TextView
+        android:id="@+id/sparereqtype"
+        android:layout_width="228dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@+id/textView24"
+        android:layout_marginStart="10dp"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+
+
+    <AutoCompleteTextView
+        android:id="@+id/stationAutoCompleteTextView"
+        android:layout_width="202dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="88dp"
+        android:backgroundTint="@color/blue"
+        android:hint="Station"
+        android:minHeight="48dp"
+        android:layout_toEndOf="@+id/textView32"
+        android:textColorHint="@color/black" />
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SLE Name:"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_below="@+id/stationAutoCompleteTextView"/>
+    <AutoCompleteTextView
+        android:id="@+id/slenameAutoCompleteTextView"
+        android:layout_width="202dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/textView27"
+        android:backgroundTint="@color/blue"
+        android:hint="SLE Name"
+        android:textColorHint="@color/black"
+        android:autofillHints="name"
+        android:minHeight="48dp"
+        android:layout_below="@+id/stationAutoCompleteTextView"/>
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SLE Number:"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_below="@+id/textView27"/>
+    <AutoCompleteTextView
+        android:id="@+id/slenoAutoCompleteTextView"
+        android:layout_width="202dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/textView28"
+        android:backgroundTint="@color/blue"
+        android:minHeight="48dp"
+        android:hint="SLE No"
+        android:textColorHint="@color/black"
+        android:autofillHints="name"
+        android:layout_below="@+id/textView27"/>
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Spare Requested:"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_below="@+id/textView31"/>
+    <AutoCompleteTextView
+        android:id="@+id/sparerequested"
+        android:layout_width="202dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/textView29"
+        android:backgroundTint="@color/blue"
+        android:minHeight="48dp"
+        android:hint="Spare Requested"
+        android:textColorHint="@color/black"
+        android:autofillHints="name"
+        android:layout_below="@+id/textView31"/>
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Requested By:"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_below="@+id/textView29"/>
+    <AutoCompleteTextView
+        android:id="@+id/requestedbyAutoCompleteTextView"
+        android:layout_width="202dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/textView30"
+        android:backgroundTint="@color/blue"
+        android:minHeight="48dp"
+        android:hint="Requested By"
+        android:textColorHint="@color/black"
+        android:autofillHints="name"
+        android:layout_below="@+id/textView29"/>
+
+    <EditText
+        android:id="@+id/faulty_spare_SL_no"
+        android:layout_width="336dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView30"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:autofillHints="name"
+        android:ems="10"
+        android:hint="Faulty Spare SL_no: "
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:textColorHint="@color/black" />
+    <EditText
+        android:id="@+id/fault_desc"
+        android:layout_width="336dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/faulty_spare_SL_no"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:autofillHints="name"
+        android:ems="10"
+        android:hint="Fault Description: "
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:textColorHint="@color/black" />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit_Request"
+        android:backgroundTint="@color/blue"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/fault_desc"
+        android:layout_marginTop="40dp"/>
+    <TextView
+        android:id="@+id/textView31"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Unit Name:"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_below="@+id/textView28"/>
+    <AutoCompleteTextView
+        android:id="@+id/unitnameAutoCompleteTextView"
+        android:layout_width="202dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/textView31"
+        android:backgroundTint="@color/blue"
+        android:minHeight="48dp"
+        android:hint="Unit Name"
+        android:textColorHint="@color/black"
+        android:autofillHints="name"
+        android:layout_below="@+id/textView28"/>
+
+    <TextView
+        android:id="@+id/textView32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Station:"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="10dp"
+
+        />
+
+
+</RelativeLayout>

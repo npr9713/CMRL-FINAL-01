@@ -28,7 +28,7 @@ public class l1profile extends AppCompatActivity {
     Button b1, punch;
     String token;
     String eid;
-    ImageButton b2, b3;
+    ImageButton b2, b3,b4;
     TextView t1, t2, t3, t4;
 
     @Override
@@ -46,6 +46,7 @@ public class l1profile extends AppCompatActivity {
         b1 = findViewById(R.id.logoutb);
         b2 = findViewById(R.id.logsbut);
         b3 = findViewById(R.id.homebut);
+        b4 = findViewById(R.id.handoverbutton);
         punch = findViewById(R.id.punchIn);
 
         // Execute the AsyncTask to make the HTTP POST request for profile data retrieval
@@ -77,6 +78,14 @@ public class l1profile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(l1profile.this, l1home.class);
+                i.putExtra("token", token);
+                startActivity(i);
+            }
+        });
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(l1profile.this, l1sparereq_view.class);
                 i.putExtra("token", token);
                 startActivity(i);
             }

@@ -4,90 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_gradient"
-    >
+    android:background="@drawable/background_gradient">
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="match_parent"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:background="@color/blue"
         android:textColor="@color/white"
         android:gravity="center"
         android:layout_height="wrap_content"
-        android:text="CMRL's SpareMan"
+        android:text=" MY PROFILE "
         android:textStyle="bold"/>
-    <LinearLayout
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:background="@color/blue"
-        android:elevation="8dp">
-
-        <ImageButton
-            android:id="@+id/logsbut"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="?android:attr/selectableItemBackground"
-            android:src="@drawable/logslogo1"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-        <ImageButton
-            android:id="@+id/homebut"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="?android:attr/selectableItemBackground"
-            android:src="@drawable/homelogo1"
-            tools:ignore="SpeakableTextPresentCheck" />
-        <ImageButton
-            android:id="@+id/handoverbutton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="?android:attr/selectableItemBackground"
-            android:src="@drawable/sparemovementlogo"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-        <ImageButton
-            android:id="@+id/profilebut"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="?android:attr/selectableItemBackground"
-            android:src="@drawable/profilelogo1"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-    </LinearLayout>
-
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="205dp"
-        android:layout_height="107dp"
-        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
         android:layout_marginTop="43dp"
-        app:srcCompat="@drawable/profilemainlogo" />
+        app:srcCompat="@drawable/profilemainlogo"
+        android:contentDescription="profileimg" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="200dp"
-        android:text="Employee Name:"
         android:textSize="20dp"
-        android:textStyle="bold" />
+        android:layout_marginTop="300dp"
+        android:layout_marginStart="20dp"
+        android:text="Employee Name:"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/enamep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="300dp"
         android:layout_toRightOf="@+id/textView9"
         android:ems="10"
         android:textSize="20dp"
@@ -101,8 +55,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:textSize="20dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="380dp"
         android:text="Employee ID:"
+        android:textColor="@color/black"
         android:textStyle="bold"/>
 
     <TextView
@@ -110,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="380dp"
         android:layout_toRightOf="@+id/textView11"
         android:ems="10"
         android:textSize="20dp"
@@ -124,7 +79,8 @@
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:text="Email ID:"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="460dp"
+        android:textColor="@color/black"
         android:layout_marginStart="20dp"
         android:textStyle="bold"/>
 
@@ -136,14 +92,15 @@
         android:textSize="20dp"
         android:textStyle="bold"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="350dp"/>
+        android:textColor="@color/black"
+        android:layout_marginTop="540dp"/>
 
     <TextView
         android:id="@+id/eemailp"
         android:layout_width="286dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="460dp"
         android:layout_toRightOf="@+id/textView12"
         android:ems="10"
         android:textSize="20dp"
@@ -156,7 +113,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="540dp"
         android:layout_toRightOf="@+id/textView13"
         android:ems="10"
         android:inputType="text"
@@ -170,18 +127,54 @@
         android:layout_height="wrap_content"
         android:text="LogOut"
         android:backgroundTint="@color/blue"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="630dp"
         android:gravity="center"
         android:layout_centerHorizontal="true"/>
-
-    <Button
-        android:id="@+id/punchIn"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Punch In"
-        android:backgroundTint="@color/blue"
-        android:layout_marginTop="400dp"
-        android:layout_centerHorizontal="true"/>
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:background="@color/blue"
+        android:elevation="8dp">
+
+        <ImageButton
+            android:id="@+id/sparemov"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/sparemovementlogo"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/homebut"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/homelogo1"
+            tools:ignore="SpeakableTextPresentCheck" />
 
 
+        <ImageButton
+            android:id="@+id/dashboardbut"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/piechartlogo"
+            tools:ignore="SpeakableTextPresentCheck" />
+        <ImageButton
+            android:id="@+id/profilebut"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/profilelogo1"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+
+    </LinearLayout>
 </RelativeLayout>

@@ -34,7 +34,7 @@ public class l1acceptedreq extends AppCompatActivity {
     private ArrayAdapter<FaultItem> adapter;
 
     String token;
-    ImageButton b1, b2, b3;
+    ImageButton b1, b2, b3,b4;
     TextView t1;
 
     @Override
@@ -46,6 +46,7 @@ public class l1acceptedreq extends AppCompatActivity {
         b1 = findViewById(R.id.homebut);
         b2 = findViewById(R.id.profilebut);
         b3 = findViewById(R.id.logsbut);
+        b4 = findViewById(R.id.handoverbutton);
         t1 = findViewById(R.id.notext);
         Intent i = getIntent();
         token = i.getStringExtra("token");

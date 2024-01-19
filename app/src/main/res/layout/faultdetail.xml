@@ -158,6 +158,14 @@
             android:background="?android:attr/selectableItemBackground"
             android:src="@drawable/homelogo1"
             tools:ignore="SpeakableTextPresentCheck" />
+        <ImageButton
+            android:id="@+id/handoverbutton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/sparemovementlogo"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
             android:id="@+id/profilebut"

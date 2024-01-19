@@ -1,4 +1,5 @@
 package com.example.cmrlproject;
+
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -6,14 +7,16 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
-import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,93 +27,120 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
 
-// Import statements
-
-// Import statements
-
-public class faultdetail extends AppCompatActivity {
-    ImageButton b1, b2, b3,b4;
-    Button acc;
-    TextView t1, t2, t3, t4, t5, t6;
+public class storel1_sparemov_req extends AppCompatActivity {
+    TextView t1,t2,t3,t4;
+    ImageButton b1,b2,b3,b4;
+    Button b5;
+    Spinner Moved_Station_Spinner;
     String token;
+    String date;
+    String station;
+    String mr_id;
+    String spare_sno;
 
+    String spare_name;
+    String por;
+    String fsno;
+    String description;
+    String status;
+    String selected_moved_station;
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.faultdetail);
-        b1 = findViewById(R.id.homebut);
-        b2 = findViewById(R.id.profilebut);
-        b3 = findViewById(R.id.logsbut);
-        b4 = findViewById(R.id.handoverbutton);
-        t1 = findViewById(R.id.acceptedackno);
-        t2 = findViewById(R.id.accepteddateandtime);
-        t3 = findViewById(R.id.acceptedstation);
-        t4 = findViewById(R.id.accepteddevice);
-        t5 = findViewById(R.id.accepteddeviceno);
-        t6 = findViewById(R.id.acceptedstatus);
-        acc = findViewById(R.id.acceptb);
+        setContentView(R.layout.storel1_sparemov_req);
         Intent intent = getIntent();
-        token = intent.getStringExtra("token");
-        Log.d("token-from FD", token);
+        token=  intent.getStringExtra("token");
+        t1=findViewById(R.id.mrid);
+        t2=findViewById(R.id.station);
+        t3=findViewById(R.id.sparename);
+        t4=findViewById(R.id.spareserno);
+        b1=findViewById(R.id.sparemov);
+        b2=findViewById(R.id.homebut);
+        b3=findViewById(R.id.dashboardbut);
+        b4=findViewById(R.id.profilebut);
+        b5=findViewById(R.id.updateb);
+        Moved_Station_Spinner = findViewById(R.id.Moved_Station_Spinner);
+        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
+                R.array.moved_station_codes, android.R.layout.simple_spinner_item);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Moved_Station_Spinner.setAdapter(adapter1);
+
+        Moved_Station_Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // Get the selected item from the spinner
+                selected_moved_station = parent.getItemAtPosition(position).toString();
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                String not_selected_status = "true";
+            }
+        });
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(storel1_sparemov_req.this, storel1dashboard.class);
+                i.putExtra("token",token);
+                startActivity(i);
+            }
+        });
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(faultdetail.this, l1home.class);
-                i.putExtra("token", token);
+                Intent i=new Intent(storel1_sparemov_req.this, storel1_sparemov.class);
+                i.putExtra("token",token);
+                startActivity(i);
+            }
+        });
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(storel1_sparemov_req.this, storel1profile.class);
+                i.putExtra("token",token);
                 startActivity(i);
             }
         });
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(faultdetail.this, l1profile.class);
-                i.putExtra("token", token);
+                Intent i=new Intent(storel1_sparemov_req.this, storel1home.class);
+                i.putExtra("token",token);
                 startActivity(i);
             }
         });
-        b3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(faultdetail.this, l1acceptedreq.class);
-                i.putExtra("token", token);
-                startActivity(i);
-            }
-        });
-
-        //checking whether the fault is available or not and we have to see properly
-
-        if (intent != null && intent.hasExtra("ackno")) {
-            String ackno = intent.getStringExtra("ackno");
-            String date = intent.getStringExtra("date");
-            String station = intent.getStringExtra("station");
-            String device = intent.getStringExtra("device");
-            String deviceno = intent.getStringExtra("deviceno");
-            String status = intent.getStringExtra("status");
-
-
-            t1.setText(ackno);
-            t2.setText(date);
-            t3.setText(station);
-            t4.setText(device);
-            t5.setText(deviceno);
-            t6.setText(status);
-        }
-        acc.setOnClickListener(new View.OnClickListener() {
+        b5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new HttpRequestTask().execute();
             }
         });
-    }
+        if (intent != null && intent.hasExtra("ackno")) {
+            String fsle=null,fsleno=null,wsno=null;
+            station = intent.getStringExtra("station");
+            mr_id = intent.getStringExtra("mr_id");
+            spare_sno = intent.getStringExtra("sno");
+            spare_name = intent.getStringExtra("spare_name");
+            Log.d("spare_name",spare_name);
+            Log.d("spare_sno",spare_sno);
+            status = intent.getStringExtra("status");
 
+
+            t1.setText(mr_id);
+            t2.setText(station);
+            t3.setText(spare_name);
+            t4.setText(spare_sno);
+
+        }
+
+    }
     private class HttpRequestTask extends AsyncTask<Void, Void, String> {
         @Override
         protected String doInBackground(Void... voids) {
-            String apiUrl = "https://98bb-2401-4900-6323-51b1-741b-7ac2-15bb-9d07.ngrok-free.app/l1_self_assign";
+            String apiUrl = "https://98bb-2401-4900-6323-51b1-741b-7ac2-15bb-9d07.ngrok-free.app/request_handover";
 
             try {
                 URL url = new URL(apiUrl);
@@ -126,8 +156,6 @@ public class faultdetail extends AppCompatActivity {
                     urlConnection.setRequestProperty("Accept", "application/json");
 
                     // Retrieve the token from the intent
-                    Intent intent = getIntent();
-                    String token = intent.getStringExtra("token");
                     urlConnection.setRequestProperty("Authorization", "Bearer " + token);
 
                     urlConnection.setDoOutput(true);
@@ -189,28 +217,25 @@ public class faultdetail extends AppCompatActivity {
         }
 
         private void handleSuccessResponse(JSONObject jsonResponse) throws JSONException {
-            JSONArray successArray = jsonResponse.getJSONArray("success");
-            JSONObject assignmentObject = successArray.getJSONObject(0);
+            int success = jsonResponse.getInt("success");
 
-            String aid = assignmentObject.getString("aid");
-            String ackno = assignmentObject.getString("ackno");
-            String eid = assignmentObject.getString("eid");
-            String hoa = assignmentObject.getString("hoa");
-            String time = assignmentObject.getString("a_time");
-            String status = assignmentObject.getString("status");
 
-            showAssignmentSuccessAlert();
+            if (success == 1) {
+                showAssignmentSuccessAlert();
+            }else{
+                showAssignmentUnSuccessAlert();
+            }
         }
 
         private void showAssignmentSuccessAlert() {
             Log.d("status","assigned");
-            AlertDialog.Builder builder = new AlertDialog.Builder(faultdetail.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(storel1_sparemov_req.this);
             builder.setTitle("Fault Assigned");
-            builder.setMessage("The fault has been assigned successfully.");
+            builder.setMessage("The fault has been handovered successfully.");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    Intent intent = new Intent(faultdetail.this,l1acceptedreq.class);
+                    Intent intent = new Intent(storel1_sparemov_req.this,storel1home.class);
                     intent.putExtra("token",token);
                     startActivity(intent);
                 }
@@ -218,13 +243,13 @@ public class faultdetail extends AppCompatActivity {
             builder.show();
         }
         private void showAssignmentUnSuccessAlert() {
-            AlertDialog.Builder builder = new AlertDialog.Builder(faultdetail.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(storel1_sparemov_req.this);
             builder.setTitle("Fault Assigned");
-            builder.setMessage("The fault has been assigned Already");
+            builder.setMessage("The fault has been handovered Already");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    Intent intent = new Intent(faultdetail.this,l1home.class);
+                    Intent intent = new Intent(storel1_sparemov_req.this,storel1home.class);
                     intent.putExtra("token",token);
                     startActivity(intent);
                 }
@@ -233,7 +258,7 @@ public class faultdetail extends AppCompatActivity {
         }
 
         private void showTokenExpiredAlert() {
-            AlertDialog.Builder builder = new AlertDialog.Builder(faultdetail.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(storel1_sparemov_req.this);
             builder.setTitle("Session Expired");
             builder.setMessage("Your session has expired. Please log in again.");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -247,7 +272,7 @@ public class faultdetail extends AppCompatActivity {
         }
 
         private void redirectToLoginPage() {
-            Intent intent = new Intent(faultdetail.this, l1login.class);
+            Intent intent = new Intent(storel1_sparemov_req.this, storelogin.class);
             startActivity(intent);
             finish();  // Optional: Close the current activity if needed
         }
@@ -265,13 +290,13 @@ public class faultdetail extends AppCompatActivity {
             String hoa = "Self";
             String status = "Assigned";
 
-            return String.format("{\"ackno\":\"%s\",\"hoa\":\"%s\",\"status\":\"%s\"}",
-                    t1.getText().toString(), hoa, status);
+            return String.format("{\"mr_id\":\"%s\",\"location\":\"%s\"}",
+                    mr_id, selected_moved_station);
+
         } catch (Exception e) {
             Log.e("JSON Error", "Error creating JSON body: " + e.getMessage());
             return null;
         }
     }
+
 }
-
-

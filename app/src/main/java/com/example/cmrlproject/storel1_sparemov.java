@@ -1,5 +1,3 @@
-
-
 package com.example.cmrlproject;
 
 import android.app.AlertDialog;
@@ -23,53 +21,40 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.Console;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class l1home extends AppCompatActivity {
-    private JSONArray successArray;
-
+public class storel1_sparemov extends AppCompatActivity {
+    ImageButton b1,b2,b3;
     String token;
-    ImageButton b1, b2, b3,b4;
+    private JSONArray successArray;
     private ListView faultListView;
     private List<String> faultList;
     private ArrayAdapter<String> adapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.l1home);
-
-        // Initialize views and variables
+        setContentView(R.layout.storel1_sparemov);
+        Intent i = getIntent();
+        token=  i.getStringExtra("token");
+        Log.d("token",token);
+        new storel1_sparemov.HttpRequestTask().execute("https://98bb-2401-4900-6323-51b1-741b-7ac2-15bb-9d07.ngrok-free.app/view_assigned_spare");
         faultListView = findViewById(R.id.faultListView);
         faultList = new ArrayList<>();
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, faultList);
         faultListView.setAdapter(adapter);
-
-        // Execute the AsyncTask to make the HTTP POST request
-        new HttpRequestTask().execute("https://98bb-2401-4900-6323-51b1-741b-7ac2-15bb-9d07.ngrok-free.app/view");
-
-        // Other initialization code
-        Intent i = getIntent();
-        token = i.getStringExtra("token");
-        Log.d("token",token);
-        b1 = findViewById(R.id.logsbut);
-        b2 = findViewById(R.id.homebut);
-        b3 = findViewById(R.id.profilebut);
-        b4 = findViewById(R.id.handoverbutton);
-
-        b1.setOnClickListener(new View.OnClickListener() {
+        b1=findViewById(R.id.homebut);
+        b2=findViewById(R.id.dashboardbut);
+        b3=findViewById(R.id.profilebut);
+        b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(l1home.this, l1acceptedreq.class);
-                i.putExtra("token", token);
+                Intent i=new Intent(storel1_sparemov.this, storel1dashboard.class);
+                i.putExtra("token",token);
                 startActivity(i);
             }
         });
@@ -77,21 +62,19 @@ public class l1home extends AppCompatActivity {
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(l1home.this, l1profile.class);
-                i.putExtra("token", token);
+                Intent i=new Intent(storel1_sparemov.this, storel1profile.class);
+                i.putExtra("token",token);
                 startActivity(i);
             }
         });
-        b4.setOnClickListener(new View.OnClickListener() {
+        b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(l1home.this, l1sparereq_view.class);
-                i.putExtra("token", token);
+                Intent i=new Intent(storel1_sparemov.this, storel1home.class);
+                i.putExtra("token",token);
                 startActivity(i);
             }
         });
-
-        // Handle item click to open details page
         faultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -107,26 +90,28 @@ public class l1home extends AppCompatActivity {
         });
 
     }
-
     private void openFaultDetails(JSONObject successObject) throws JSONException {
-        Intent intent = new Intent(this, faultdetail.class);
+        Intent intent = new Intent(this, storel1_sparemov_req.class);
         String ackno = successObject.getString("ackno");
         Log.d("ACKNO",ackno);
-        String date = successObject.getString("dt");
         String station = successObject.getString("station");
-        String device = successObject.getString("device");
-        String deviceno = successObject.getString("deviceno");
-        String status = successObject.getString("description");
+        String mr_id = successObject.getString("mr_id");
+        String spare_name = successObject.getString("spare_name");
+        String spare_sno = successObject.getString("sno");
+        String status = successObject.getString("status");
+        Log.d("spare_name",spare_name);
+        Log.d("spare_sno",spare_sno);
+
+
         intent.putExtra("token",token);
         intent.putExtra("ackno", ackno);
-        intent.putExtra("date", date);
+        intent.putExtra("sno", spare_sno);
         intent.putExtra("station", station);
-        intent.putExtra("device", device);
-        intent.putExtra("deviceno", deviceno);
+        intent.putExtra("mr_id", mr_id);
+        intent.putExtra("spare_name", spare_name);
         intent.putExtra("status", status);
         startActivity(intent);
     }
-
     private class HttpRequestTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
@@ -192,7 +177,7 @@ public class l1home extends AppCompatActivity {
                 }
             } else {
                 // Handle the case where the result is null
-                Toast.makeText(l1home.this, "Error fetching data from server", Toast.LENGTH_SHORT).show();
+                Toast.makeText(storel1_sparemov.this, "Error fetching data from server", Toast.LENGTH_SHORT).show();
             }
         }
         private void parseAndDisplayResponse(JSONObject jsonResponse) {
@@ -205,11 +190,11 @@ public class l1home extends AppCompatActivity {
 
                     // Get values from JSON
                     String station = successObject.getString("station");
-                    String device = successObject.getString("device");
                     String status = successObject.getString("status");
+                    String mr_id = successObject.getString("mr_id");
 
                     // Add station and ackno to the list
-                    String fault = station + ": " + device+": "+status;
+                    String fault = station + ": " + status+": "+mr_id;
                     faultList.add(fault);
                 }
 
@@ -222,7 +207,7 @@ public class l1home extends AppCompatActivity {
 
 
         private void showTokenExpiredAlert() {
-            AlertDialog.Builder builder = new AlertDialog.Builder(l1home.this); // Pass the context of l1home activity
+            AlertDialog.Builder builder = new AlertDialog.Builder(storel1_sparemov.this); // Pass the context of l1home activity
             builder.setTitle("Session Expired");
             builder.setMessage("Your session has expired. Please log in again.");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -238,9 +223,9 @@ public class l1home extends AppCompatActivity {
         private void redirectToLoginPage() {
             SharedPreferences sharedPreferences = getSharedPreferences("mypref",MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("AccessToken-l1",null);
+            editor.putString("AccessToken-sl1",null);
             editor.apply();
-            Intent intent = new Intent(l1home.this, l1login.class);
+            Intent intent = new Intent(storel1_sparemov.this, storelogin.class);
             startActivity(intent);
             finish();  // Optional: Close the current activity if needed
         }

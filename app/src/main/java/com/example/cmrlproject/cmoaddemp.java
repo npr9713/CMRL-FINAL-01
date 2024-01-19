@@ -7,9 +7,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,14 +26,24 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class cmoaddemp extends AppCompatActivity {
     Button b1;
     ImageButton i1,i2,i3,i4,i5;
     EditText e1,e2,e3,e4,e5;
     String token;
+    ArrayList<String> role = new ArrayList<>();
+    private String selectedRole;
+
+    // Add values 'field' and 'store' to the ArrayList
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        role.add("field");
+        role.add("store");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cmoaddemp);
         Intent i = getIntent();
@@ -46,6 +59,25 @@ public class cmoaddemp extends AppCompatActivity {
         i4=(ImageButton)  findViewById(R.id.profilebut);
         i5=(ImageButton)findViewById(R.id.dashboardbut);
         b1=(Button) findViewById(R.id.adddetailb);
+        Spinner employeeSpinner = (Spinner) findViewById(R.id.employeeSpinner);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, role);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        employeeSpinner.setAdapter(adapter);
+
+        employeeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+
+                selectedRole = role.get(position);
+                Log.d("selected", selectedRole);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Handle the case where nothing is selected if needed
+            }
+        });
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -241,8 +273,8 @@ public class cmoaddemp extends AppCompatActivity {
     private String createJsonBody() {
         try {
             // Include latitude, longitude, and ackno in the JSON body
-            return String.format("{\"name\":\"%s\", \"eid\":\"%s\", \"phone\":\"%s\", \"email\":\"%s\",\"password\":\"%s\"}",
-                    e1.getText().toString(),e2.getText().toString(),e3.getText().toString(),e4.getText().toString(),e5.getText().toString());
+            return String.format("{\"name\":\"%s\", \"eid\":\"%s\", \"phone\":\"%s\", \"email\":\"%s\",\"password\":\"%s\",\"role\":\"%s\"}",
+                    e1.getText().toString(),e2.getText().toString(),e3.getText().toString(),e4.getText().toString(),e5.getText().toString(),selectedRole);
 
         } catch (Exception e) {
             Log.e("JSON Error", "Error creating JSON body: " + e.getMessage());

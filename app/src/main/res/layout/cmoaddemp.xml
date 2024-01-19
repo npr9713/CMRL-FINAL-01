@@ -77,6 +77,14 @@
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:textColorHint="@color/black" />
+    <Spinner
+        android:id="@+id/employeeSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="460dp"
+        android:minHeight="48dp"
+        android:spinnerMode="dropdown" />
 
     <Button
         android:id="@+id/adddetailb"
@@ -84,7 +92,7 @@
         android:layout_height="wrap_content"
         android:text="Add Detail"
         android:backgroundTint="@color/blue"
-        android:layout_marginTop="480dp"
+        android:layout_marginTop="530dp"
         android:layout_centerHorizontal="true"/>
     <LinearLayout
         android:id="@+id/bottom_navigation"

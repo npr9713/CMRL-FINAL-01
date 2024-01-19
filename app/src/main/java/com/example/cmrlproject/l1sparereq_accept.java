@@ -32,16 +32,16 @@ import java.util.Random;
 
 // Import statements
 
-public class faultdetail extends AppCompatActivity {
+public class l1sparereq_accept extends AppCompatActivity {
     ImageButton b1, b2, b3,b4;
     Button acc;
-    TextView t1, t2, t3, t4, t5, t6;
+    TextView t1, t2, t3, t4, t5, t6,t7;
     String token;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.faultdetail);
+        setContentView(R.layout.l1sparereq_accpet);
         b1 = findViewById(R.id.homebut);
         b2 = findViewById(R.id.profilebut);
         b3 = findViewById(R.id.logsbut);
@@ -52,6 +52,7 @@ public class faultdetail extends AppCompatActivity {
         t4 = findViewById(R.id.accepteddevice);
         t5 = findViewById(R.id.accepteddeviceno);
         t6 = findViewById(R.id.acceptedstatus);
+        t7 = findViewById(R.id.acceptedstore);
         acc = findViewById(R.id.acceptb);
         Intent intent = getIntent();
         token = intent.getStringExtra("token");
@@ -59,7 +60,7 @@ public class faultdetail extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(faultdetail.this, l1home.class);
+                Intent i = new Intent(l1sparereq_accept.this, l1home.class);
                 i.putExtra("token", token);
                 startActivity(i);
             }
@@ -67,7 +68,7 @@ public class faultdetail extends AppCompatActivity {
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(faultdetail.this, l1profile.class);
+                Intent i = new Intent(l1sparereq_accept.this, l1profile.class);
                 i.putExtra("token", token);
                 startActivity(i);
             }
@@ -75,7 +76,7 @@ public class faultdetail extends AppCompatActivity {
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(faultdetail.this, l1acceptedreq.class);
+                Intent i = new Intent(l1sparereq_accept.this, l1acceptedreq.class);
                 i.putExtra("token", token);
                 startActivity(i);
             }
@@ -90,6 +91,7 @@ public class faultdetail extends AppCompatActivity {
             String device = intent.getStringExtra("device");
             String deviceno = intent.getStringExtra("deviceno");
             String status = intent.getStringExtra("status");
+            String storeLoc = intent.getStringExtra("location");
 
 
             t1.setText(ackno);
@@ -98,6 +100,7 @@ public class faultdetail extends AppCompatActivity {
             t4.setText(device);
             t5.setText(deviceno);
             t6.setText(status);
+            t7.setText(storeLoc);
         }
         acc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,7 +113,7 @@ public class faultdetail extends AppCompatActivity {
     private class HttpRequestTask extends AsyncTask<Void, Void, String> {
         @Override
         protected String doInBackground(Void... voids) {
-            String apiUrl = "https://98bb-2401-4900-6323-51b1-741b-7ac2-15bb-9d07.ngrok-free.app/l1_self_assign";
+            String apiUrl = "https://98bb-2401-4900-6323-51b1-741b-7ac2-15bb-9d07.ngrok-free.app/l1_spare_assign";
 
             try {
                 URL url = new URL(apiUrl);
@@ -161,6 +164,7 @@ public class faultdetail extends AppCompatActivity {
             if (result != null) {
                 try {
                     JSONObject jsonResponse = new JSONObject(result);
+                    Log.d("response", String.valueOf(jsonResponse));
 
                     if (jsonResponse.has("success")) {
                         // If success array is present, the fault is assigned successfully
@@ -189,28 +193,23 @@ public class faultdetail extends AppCompatActivity {
         }
 
         private void handleSuccessResponse(JSONObject jsonResponse) throws JSONException {
-            JSONArray successArray = jsonResponse.getJSONArray("success");
-            JSONObject assignmentObject = successArray.getJSONObject(0);
+           int  success = jsonResponse.getInt("success");
+           if(success==1)
+           {
+               showAssignmentSuccessAlert();
+           }
 
-            String aid = assignmentObject.getString("aid");
-            String ackno = assignmentObject.getString("ackno");
-            String eid = assignmentObject.getString("eid");
-            String hoa = assignmentObject.getString("hoa");
-            String time = assignmentObject.getString("a_time");
-            String status = assignmentObject.getString("status");
-
-            showAssignmentSuccessAlert();
         }
 
         private void showAssignmentSuccessAlert() {
             Log.d("status","assigned");
-            AlertDialog.Builder builder = new AlertDialog.Builder(faultdetail.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(l1sparereq_accept.this);
             builder.setTitle("Fault Assigned");
             builder.setMessage("The fault has been assigned successfully.");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    Intent intent = new Intent(faultdetail.this,l1acceptedreq.class);
+                    Intent intent = new Intent(l1sparereq_accept.this,l1acceptedreq.class);
                     intent.putExtra("token",token);
                     startActivity(intent);
                 }
@@ -218,13 +217,13 @@ public class faultdetail extends AppCompatActivity {
             builder.show();
         }
         private void showAssignmentUnSuccessAlert() {
-            AlertDialog.Builder builder = new AlertDialog.Builder(faultdetail.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(l1sparereq_accept.this);
             builder.setTitle("Fault Assigned");
             builder.setMessage("The fault has been assigned Already");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    Intent intent = new Intent(faultdetail.this,l1home.class);
+                    Intent intent = new Intent(l1sparereq_accept.this,l1home.class);
                     intent.putExtra("token",token);
                     startActivity(intent);
                 }
@@ -233,7 +232,7 @@ public class faultdetail extends AppCompatActivity {
         }
 
         private void showTokenExpiredAlert() {
-            AlertDialog.Builder builder = new AlertDialog.Builder(faultdetail.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(l1sparereq_accept.this);
             builder.setTitle("Session Expired");
             builder.setMessage("Your session has expired. Please log in again.");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -247,7 +246,7 @@ public class faultdetail extends AppCompatActivity {
         }
 
         private void redirectToLoginPage() {
-            Intent intent = new Intent(faultdetail.this, l1login.class);
+            Intent intent = new Intent(l1sparereq_accept.this, l1login.class);
             startActivity(intent);
             finish();  // Optional: Close the current activity if needed
         }
@@ -257,9 +256,6 @@ public class faultdetail extends AppCompatActivity {
     private String createJsonBody() {
         // Create a JSON object with the required parameters
         try {
-            Random random = new Random();
-            String eid = String.valueOf(random.nextInt(1000)); // Replace 1000 with your desired upper limit for eid
-
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
 
             String hoa = "Self";

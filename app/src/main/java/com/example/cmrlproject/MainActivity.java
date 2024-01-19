@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private int userType = 0;
     private RadioGroup radioGroup;
 
-    String token,ctoken,ztoken;
+    String token,ctoken,ztoken,sl1token;
 
 
 
@@ -32,8 +32,10 @@ public class MainActivity extends AppCompatActivity {
         token = sharedPreferences.getString("AccessToken-l1","no");
         ctoken = sharedPreferences.getString("AccessToken-cmo","no");
         ztoken = sharedPreferences.getString("AccessToken-zje","no");
+        sl1token = sharedPreferences.getString("AccessToken-sl1","no");
             Log.d("ctoken",ctoken);
             Log.d("token",token);
+            Log.d("sl1token",sl1token);
 
         if(!(Objects.equals(token, "no")))
         {
@@ -56,6 +58,14 @@ public class MainActivity extends AppCompatActivity {
             Log.d("token",ctoken);
             Intent i = new Intent(MainActivity.this,zjeprofile.class);
             i.putExtra("token",ztoken);
+            startActivity(i);
+
+        }
+        if(!(Objects.equals(sl1token, "no")))
+        {
+            Log.d("token",sl1token);
+            Intent i = new Intent(MainActivity.this,storel1home.class);
+            i.putExtra("token",sl1token);
             startActivity(i);
 
         }
@@ -115,5 +125,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+    public void onBackPressed() {
+        // Always load the MainActivity
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();
     }
 }

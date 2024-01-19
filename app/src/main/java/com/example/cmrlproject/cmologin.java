@@ -42,6 +42,7 @@ public class cmologin extends AppCompatActivity {
         e3 = (EditText) findViewById(R.id.passwordl);
         b1 = (Button) findViewById(R.id.loginb);
         b2 = (Button) findViewById(R.id.resetpass);
+
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,6 +56,20 @@ public class cmologin extends AppCompatActivity {
                 }
             }
         });
+    }
+    public void onBackPressed() {
+        // Check if the user is logged in (you may use SharedPreferences or other methods)
+        SharedPreferences sharedPreferences = getSharedPreferences("mypref", MODE_PRIVATE);
+        boolean isLoggedIn = sharedPreferences.contains("AccessToken-cmo");
+
+        if (isLoggedIn) {
+            super.onBackPressed(); // Allow the default back behavior
+        } else {
+            // If the user is not logged in, navigate to the login page
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
     private class HttpRequestTask extends AsyncTask<String, Void, String> {
         @Override

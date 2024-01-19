@@ -1,5 +1,6 @@
 package com.example.cmrlproject;
 
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -23,75 +24,61 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class cmoprofile extends AppCompatActivity {
+public class storel1profile extends AppCompatActivity {
     Button b1;
-    ImageButton b2, b3,b4,b5;
+    ImageButton b2, b3,b4;
     TextView t1, t2, t3, t4;
-
     String token,eid;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cmoprofile);
-        t1=(TextView) findViewById(R.id.enamep);
-        t2=(TextView) findViewById(R.id.eidp);
-        t3=(TextView) findViewById(R.id.eemailp);
-        t4=(TextView) findViewById(R.id.ephonep);
-        b1=(Button) findViewById(R.id.logoutb);
-        b2=(ImageButton)  findViewById(R.id.addempbut);
-        b3=(ImageButton) findViewById(R.id.homebut);
-        b4=(ImageButton)findViewById(R.id.viewreqbut);
-        b5=(ImageButton)findViewById(R.id.dashboardbut);
+        setContentView(R.layout.storel1profile);
         Intent i = getIntent();
-        token = i.getStringExtra("token");
-        new ProfileDataTask().execute("https://98bb-2401-4900-6323-51b1-741b-7ac2-15bb-9d07.ngrok-free.app/cmo_profile");
+        token=  i.getStringExtra("token");
+        new storel1profile.ProfileDataTask().execute("https://98bb-2401-4900-6323-51b1-741b-7ac2-15bb-9d07.ngrok-free.app/sl1_profile");
+        t1 = findViewById(R.id.enamep);
+        t2 = findViewById(R.id.eidp);
+        t3 = findViewById(R.id.eemailp);
+        t4 = findViewById(R.id.ephonep);
+        b1 = findViewById(R.id.logoutb);
+        b2 = findViewById(R.id.sparemov);
+        b3 = findViewById(R.id.homebut);
+        b4 = findViewById(R.id.dashboardbut);
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SharedPreferences sharedPreferences = getSharedPreferences("mypref",MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("AccessToken-cmo",null);
+                editor.putString("AccessToken-sl1",null);
                 editor.apply();
-                Intent i = new Intent(cmoprofile.this, cmologin.class);
+                Intent i = new Intent(storel1profile.this, MainActivity.class);
                 startActivity(i);
+
             }
         });
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(cmoprofile.this, cmoaddemp.class);
-                i.putExtra("token", token);
+                Intent i = new Intent(storel1profile.this, storel1_sparemov.class);
+                i.putExtra("token",token);
                 startActivity(i);
-
             }
         });
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(cmoprofile.this, cmohome.class);
-                i.putExtra("token", token);
+                Intent i = new Intent(storel1profile.this, storel1home.class);
+                i.putExtra("token",token);
                 startActivity(i);
-
             }
         });
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(cmoprofile.this, cmoviewreq.class);
-                i.putExtra("token", token);
+                Intent i = new Intent(storel1profile.this, storel1dashboard.class);
+                i.putExtra("token",token);
                 startActivity(i);
-
-            }
-        });
-        b5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(cmoprofile.this, cmodashboard.class);
-                i.putExtra("token", token);
-                startActivity(i);
-
             }
         });
 
@@ -139,10 +126,7 @@ public class cmoprofile extends AppCompatActivity {
                     if (jsonResponse.has("message") && "Unauthorized: Invalid token".equals(jsonResponse.getString("message"))) {
                         // Token is expired or invalid, redirect to login page
                         showTokenExpiredAlert();
-                    } else {
-                        // Continue processing other responses
-                        // Parse the JSON response
-                        // Update the UI
+                    } else if (jsonResponse.has("Active") && "1".equals(jsonResponse.getString("Active"))) {
                         parseAndDisplayResponse(jsonResponse);
                     }
                 } catch (JSONException e) {
@@ -150,7 +134,7 @@ public class cmoprofile extends AppCompatActivity {
                 }
             } else {
                 // Handle the case where the result is null
-                Toast.makeText(cmoprofile.this, "Error fetching data from server", Toast.LENGTH_SHORT).show();
+                Toast.makeText(storel1profile.this, "Error fetching data from server", Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -173,7 +157,7 @@ public class cmoprofile extends AppCompatActivity {
         }
 
         private void showTokenExpiredAlert() {
-            AlertDialog.Builder builder = new AlertDialog.Builder(cmoprofile.this); // Pass the context of l1profile activity
+            AlertDialog.Builder builder = new AlertDialog.Builder(storel1profile.this); // Pass the context of l1profile activity
             builder.setTitle("Session Expired");
             builder.setMessage("Your session has expired. Please log in again.");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -189,9 +173,9 @@ public class cmoprofile extends AppCompatActivity {
         private void redirectToLoginPage() {
             SharedPreferences sharedPreferences = getSharedPreferences("mypref",MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("AccessToken-cmo",null);
+            editor.putString("AccessToken-l1",null);
             editor.apply();
-            Intent intent = new Intent(cmoprofile.this, cmologin.class); // Change to your login activity
+            Intent intent = new Intent(storel1profile.this, storelogin.class); // Change to your login activity
             startActivity(intent);
             finish();  // Optional: Close the current activity if needed
         }
